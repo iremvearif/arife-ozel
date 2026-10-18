@@ -4,74 +4,282 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bizim Hikâyemiz ♡</title>
+
 <style>
-*{box-sizing:border-box}
-body{margin:0;background:#eee6dc;color:#33364b;font-family:Georgia,serif}
-.page{max-width:650px;margin:auto;background:#fffaf1;min-height:100vh;padding:25px 20px}
-header{text-align:center;border-bottom:1px dashed #cbb8a8;padding:15px;letter-spacing:3px;font-size:12px}
-.hero{text-align:center;padding:55px 8px 40px}
-small{color:#a34d5a;letter-spacing:2px}
-h1{font-size:clamp(40px,10vw,64px);font-weight:normal;line-height:1.1;margin:20px 0}
-h1 em{color:#a34d5a}
-p{line-height:1.9;font-size:14px}
-button,.link{background:#a34d5a;color:white;border:0;padding:13px 20px;cursor:pointer;text-decoration:none;display:inline-block;margin-top:12px;font-size:14px}
-h2{font-weight:normal;font-size:28px}
-.section{padding:25px 0;text-align:center}
-.gallery{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:25px 0}
-.photo{background:#f0e3db;aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;text-align:center;padding:12px;color:#92777e;font-size:13px;overflow:hidden}
-.photo img{width:100%;height:100%;object-fit:cover}
-.polaroid{background:white;padding:9px 9px 15px;box-shadow:0 3px 12px #0001;transform:rotate(-2deg)}
-.polaroid:nth-child(even){transform:rotate(2deg);margin-top:15px}
-.caption{text-align:center;padding-top:12px;font-size:14px}
-.card{background:#f2e6d7;text-align:left;padding:22px;margin:18px 0;line-height:1.9}
-.letter{border:1px dashed #cba6a6;padding:25px 18px;text-align:center;margin:30px 0}
-#letter{display:none;text-align:left;white-space:pre-line;line-height:2;font-size:16px;margin-top:20px}
-.music{background:#e9e1ed;padding:25px 15px;text-align:center;margin:30px 0}
-footer{text-align:center;padding:25px;border-top:1px dashed #cbb8a8;line-height:2}
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #e9e2da;
+  color: #302e30;
+  font-family: Georgia, serif;
+}
+
+.page {
+  max-width: 760px;
+  margin: auto;
+  min-height: 100vh;
+  padding: 20px 18px;
+  background: #f8f5ef;
+}
+
+header {
+  text-align: center;
+  font: 10px Arial, sans-serif;
+  letter-spacing: 3px;
+  padding: 16px 0 22px;
+  border-bottom: 1px solid #ded5cb;
+}
+
+.intro {
+  text-align: center;
+  padding: 28px 0 12px;
+}
+
+.intro small, .eyebrow {
+  font: 10px Arial, sans-serif;
+  letter-spacing: 2px;
+  color: #8b5558;
+}
+
+.intro h1 {
+  font-size: clamp(32px, 8vw, 52px);
+  font-weight: normal;
+  line-height: 1.05;
+  margin: 12px 0;
+}
+
+.intro p {
+  font: 13px/1.8 Arial, sans-serif;
+  color: #77716e;
+}
+
+/* Modern, üst üste fotoğraf kolajı */
+.collage {
+  position: relative;
+  height: 570px;
+  margin: 10px -4px 28px;
+  overflow: hidden;
+  background: #eee7de;
+}
+
+.collage-photo {
+  position: absolute;
+  padding: 4px;
+  background: #fffdf9;
+  box-shadow: 0 5px 18px #35282020;
+  overflow: hidden;
+}
+
+.collage-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.p1 { left: 2%; top: 4%; width: 39%; height: 205px; transform: rotate(-7deg); }
+.p2 { right: 3%; top: 3%; width: 40%; height: 185px; transform: rotate(5deg); }
+.p3 { left: 1%; top: 40%; width: 34%; height: 200px; transform: rotate(5deg); }
+.p4 { right: 0; top: 39%; width: 37%; height: 210px; transform: rotate(-6deg); }
+.p5 { left: 17%; bottom: 2%; width: 33%; height: 165px; transform: rotate(-4deg); }
+.p6 { right: 14%; bottom: 1%; width: 32%; height: 175px; transform: rotate(6deg); }
+
+.center-note {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-2deg);
+  width: 47%;
+  max-width: 290px;
+  padding: 27px 12px;
+  text-align: center;
+  background: #fffdf9;
+  box-shadow: 0 8px 25px #35282025;
+}
+
+.center-note .tiny {
+  font: 9px Arial, sans-serif;
+  letter-spacing: 2px;
+  color: #8b5558;
+}
+
+.center-note h2 {
+  font-size: clamp(20px, 5vw, 29px);
+  font-weight: normal;
+  line-height: 1.2;
+  margin: 15px 0 10px;
+}
+
+.center-note p {
+  font: 11px/1.8 Arial, sans-serif;
+  margin: 0;
+}
+
+.flower {
+  position: absolute;
+  z-index: 6;
+  color: #fff;
+  text-shadow: 0 1px 5px #8d8179;
+  font-size: 35px;
+}
+
+.flower.one { left: 42%; top: 12%; transform: rotate(-20deg); }
+.flower.two { right: 36%; bottom: 12%; transform: rotate(20deg); }
+
+.section {
+  padding: 28px 0;
+  text-align: center;
+}
+
+h2 {
+  font-weight: normal;
+}
+
+.description {
+  font: 13px/1.8 Arial, sans-serif;
+  color: #77716e;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 17px 13px;
+  margin-top: 25px;
+}
+
+.gallery-photo {
+  background: #fffdf9;
+  padding: 6px 6px 12px;
+  box-shadow: 0 3px 12px #35282012;
+}
+
+.gallery-photo:nth-child(3n + 1) {
+  transform: rotate(-2deg);
+}
+
+.gallery-photo:nth-child(3n + 2) {
+  transform: rotate(1.5deg);
+}
+
+.gallery-photo img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.letter {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 28px 20px;
+  margin: 35px 0;
+  text-align: center;
+  border: 1px solid #ddc9c4;
+  background: #fffaf1;
+}
+
+.letter::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background-image: var(--letter-photo);
+  background-size: cover;
+  background-position: center;
+  opacity: .15;
+}
+
+.letter h2 {
+  font-size: 28px;
+}
+
+button, .link {
+  border: 0;
+  background: #8d5158;
+  color: white;
+  padding: 12px 18px;
+  font-size: 13px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 12px;
+}
+
+#letter {
+  display: none;
+  white-space: pre-line;
+  text-align: left;
+  font-size: 15px;
+  line-height: 2;
+  margin-top: 22px;
+}
+
+.music {
+  text-align: center;
+  background: #ece6e9;
+  padding: 25px 14px;
+  margin: 30px 0;
+}
+
+footer {
+  border-top: 1px solid #ded5cb;
+  text-align: center;
+  padding: 25px 0 12px;
+  font: 12px/2 Arial, sans-serif;
+  color: #756d69;
+}
+
+@media (max-width: 420px) {
+  .collage { height: 500px; }
+  .p1, .p2 { height: 160px; }
+  .p3, .p4 { height: 175px; }
+  .p5, .p6 { height: 140px; }
+  .center-note { width: 52%; padding: 22px 8px; }
+  .flower { font-size: 28px; }
+}
 </style>
 </head>
+
 <body>
 <main class="page">
-<header>BİZİM KÜÇÜK DÜNYAMIZ ♡</header>
 
-<section class="hero">
-<small>SANA, SADECE SANA</small>
-<h1>Bizim küçük<br><em>hikâyemiz.</em></h1>
-<p>Bunca insanın arasında,<br>
-benim en güzel hikâyelerimden biri sensin.<br>
-Bu sayfa da ikimize ait küçük bir dünya olsun.</p>
-<button onclick="document.getElementById('anilar').scrollIntoView({behavior:'smooth'})">Anılarımıza git ↓</button>
+<header>OUR LITTLE WORLD ♡</header>
+
+<section class="intro">
+  <small>JUST YOU & ME</small>
+  <h1>Bizim küçük<br>hikâyemiz.</h1>
+  <p>Bir sürü anı. Bir sürü his.<br>İyi ki biz.</p>
 </section>
 
-<section class="section" id="anilar">
-<small>FOTOĞRAF ALBÜMÜMÜZ</small>
-<h2>Küçük anlar, kocaman hisler.</h2>
-<p>En sevdiğimiz fotoğraflar burada birikecek.</p>
-<div class="gallery">
-<div class="polaroid"><div class="photo">♡<br>İlk fotoğrafımız buraya</div><div class="caption">Sen ve ben</div></div>
-<div class="polaroid"><div class="photo">♡<br>Güzel bir anımız buraya</div><div class="caption">İyi ki o gün</div></div>
-<div class="polaroid"><div class="photo">♡<br>Bir başka anımız buraya</div><div class="caption">En sevdiğim ikili</div></div>
-<div class="polaroid"><div class="photo">♡<br>Yeni anılarımız buraya</div><div class="caption">Devamı gelecek</div></div>
-</div>
+<section class="collage" id="collage">
+  <div class="center-note">
+    <div class="tiny">JUST US · ONE YEAR</div>
+    <h2>1. yılımız<br>kutlu olsun.</h2>
+    <p>Sevgilim, seni çok seviyorum. ♡</p>
+  </div>
+  <span class="flower one" aria-hidden="true">❀</span>
+  <span class="flower two" aria-hidden="true">❀</span>
 </section>
 
 <section class="section">
-<small>ANILARIMIZDAN</small>
-<h2>Bizden birkaç şey.</h2>
-<div class="card"><small>NOT 01</small><h3>En sevdiğim tesadüf</h3>
-Birbirimizi bulmuş olmak. Koca bir dünyada yollarımızın kesişmesi hâlâ çok güzel.</div>
-<div class="card"><small>NOT 02</small><h3>Bizim saçma anlarımız</h3>
-Kimsenin anlamadığı şakalarımız, birlikte gülmelerimiz ve sıradan günleri güzelleştiren küçük şeyler.</div>
-<div class="card"><small>NOT 03</small><h3>Daha yaşayacaklarımız var.</h3>
-Henüz çekmediğimiz fotoğraflar, gitmediğimiz yerler ve biriktireceğimiz bir sürü anı...</div>
+  <div class="eyebrow">THE LITTLE THINGS</div>
+  <h2>Anılarımız.</h2>
+  <p class="description">Birlikte biriktirdiğimiz güzel şeyler.</p>
+  <div class="gallery" id="gallery">
+    Fotoğraflar yükleniyor ♡
+  </div>
 </section>
 
-<section class="letter">
-<small>SANA ÖZEL BİR MEKTUP</small>
-<h2>Açmadan gitme.</h2>
-<p>Bu küçük mektup sadece senin için.</p>
-<button onclick="toggleLetter()" id="letterButton">Mektubu aç ♡</button>
-<div id="letter">Yakışıklım,
+<section class="letter" id="letterSection">
+  <div class="eyebrow">JUST FOR YOU</div>
+  <h2>Sana küçük bir mektup.</h2>
+  <p class="description">Açmadan gitme.</p>
+  <button id="letterButton" onclick="toggleLetter()">Mektubu aç ♡</button>
+
+  <div id="letter">Yakışıklım,
 
 Bu siteyi senin için hazırlamak istedim.
 Çünkü birlikte yaşadığımız güzel şeyleri
@@ -92,113 +300,101 @@ Seni seviyorum. ♡</div>
 </section>
 
 <section class="music">
-<small>BİZİM ŞARKIMIZ</small>
-<h2>Bu şarkı sana gelsin. ♫</h2>
-<p>Birlikte bizi hatırlatan şarkıyı buraya ekleyeceğiz.</p>
-<a class="link" href="https://open.spotify.com/" target="_blank" rel="noopener">Şarkımızı dinle ↗</a>
+  <div class="eyebrow">OUR SONG</div>
+  <h2>Bu şarkı sana gelsin. ♫</h2>
+  <p class="description">Bizi hatırlatan şarkı.</p>
+  <a class="link" href="https://open.spotify.com/"
+     target="_blank" rel="noopener">Şarkımızı dinle ↗</a>
 </section>
 
 <footer>
-<span style="color:#a34d5a;font-size:25px">♥</span><br>
-İyi ki sen. İyi ki biz.<br>
-<small>Hikâyemiz devam ediyor...</small>
+  İyi ki sen. İyi ki biz. ♡<br>
+  Hikâyemiz devam ediyor...
 </footer>
+
 </main>
-<script>
-function toggleLetter(){
-const m=document.getElementById('letter');
-const b=document.getElementById('letterButton');
-const open=m.style.display==='block';
-m.style.display=open?'none':'block';
-b.textContent=open?'Mektubu aç ♡':'Mektubu kapat ♡';
-}
-</script>
-<!-- Bizim fotoğraf albümümüz -->
-<section id="our-photo-gallery">
-  <h2>Bizim küçük dünyamız ♡</h2>
-  <p>Biriktirdiğimiz güzel anılar...</p>
-  <div id="our-photos">Fotoğraflarımız hazırlanıyor ♡</div>
-</section>
-
-<style>
-#our-photo-gallery {
-  padding: 30px 16px;
-  text-align: center;
-  color: #33364b;
-}
-#our-photo-gallery h2 {
-  font-size: 28px;
-  margin-bottom: 8px;
-}
-#our-photo-gallery p {
-  margin-bottom: 24px;
-}
-#our-photos {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-  max-width: 850px;
-  margin: auto;
-}
-.our-photo {
-  background: #fffaf3;
-  padding: 8px 8px 18px;
-  box-shadow: 2px 4px 10px #00000018;
-  transform: rotate(-1deg);
-}
-.our-photo:nth-child(even) {
-  transform: rotate(1deg);
-}
-.our-photo img {
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  display: block;
-}
-@media (min-width: 600px) {
-  #our-photos {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-</style>
 
 <script>
+function toggleLetter() {
+  const m = document.getElementById("letter");
+  const b = document.getElementById("letterButton");
+  const open = m.style.display === "block";
+  m.style.display = open ? "none" : "block";
+  b.textContent = open ? "Mektubu aç ♡" : "Mektubu kapat ♡";
+}
+
 (async function () {
-  const gallery = document.getElementById("our-photos");
+  const gallery = document.getElementById("gallery");
+  const collage = document.getElementById("collage");
+
   try {
     const response = await fetch(
       "https://api.github.com/repos/iremvearif/arife-ozel/contents"
     );
+
     if (!response.ok) throw new Error("Fotoğraflar alınamadı");
 
     const files = await response.json();
-    const photos = files.filter(file =>
-      file.type === "file" &&
-      /\.(jpe?g|png|webp|gif|avif)$/i.test(file.name)
-    );
 
-    gallery.replaceChildren();
+    const photos = files
+      .filter(file =>
+        file.type === "file" &&
+        /\.(jpe?g|png|webp|gif|avif)$/i.test(file.name)
+      )
+      .sort((a, b) => a.name.localeCompare(b.name));
 
     if (!photos.length) {
       gallery.textContent = "Fotoğraflar bulunamadı ♡";
       return;
     }
 
-    photos.forEach(file => {
+    // İlk altı fotoğraf üstteki kolajda görünür.
+    photos.slice(0, 6).forEach((file, index) => {
       const frame = document.createElement("div");
-      frame.className = "our-photo";
+      frame.className = "collage-photo p" + (index + 1);
 
       const img = document.createElement("img");
       img.src = file.download_url;
-      img.alt = "Bizim güzel bir anımız ♡";
+      img.alt = "Bizim bir anımız";
+      img.loading = "lazy";
+
+      frame.appendChild(img);
+      collage.appendChild(frame);
+    });
+
+    // Yedinci fotoğraf mektubun arka planında soluk görünür.
+    if (photos[6]) {
+      document.getElementById("letterSection").style.setProperty(
+        "--letter-photo",
+        'url("' + photos[6].download_url + '")'
+      );
+    }
+
+    // Kalan fotoğraflar alttaki galeride görünür.
+    const remainingPhotos = photos.slice(7);
+
+    gallery.replaceChildren();
+
+    remainingPhotos.forEach(file => {
+      const frame = document.createElement("div");
+      frame.className = "gallery-photo";
+
+      const img = document.createElement("img");
+      img.src = file.download_url;
+      img.alt = "Bizim bir anımız";
       img.loading = "lazy";
 
       frame.appendChild(img);
       gallery.appendChild(frame);
     });
+
+    if (!remainingPhotos.length) {
+      gallery.textContent = "Yeni anılarımız burada birikecek ♡";
+    }
+
   } catch (error) {
     gallery.textContent =
-      "Albümümüz şu an yüklenemedi. Biraz sonra tekrar deneyelim ♡";
+      "Fotoğraf albümü yüklenemedi. Biraz sonra tekrar deneyelim ♡";
   }
 })();
 </script>
