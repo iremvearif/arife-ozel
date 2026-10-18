@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bizim Hikâyemiz ♡</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#eee6dc;color:#33364b;font-family:Georgia,serif}
+.page{max-width:650px;margin:auto;background:#fffaf1;min-height:100vh;padding:25px 20px}
+header{text-align:center;border-bottom:1px dashed #cbb8a8;padding:15px;letter-spacing:3px;font-size:12px}
+.hero{text-align:center;padding:55px 8px 40px}
+small{color:#a34d5a;letter-spacing:2px}
+h1{font-size:clamp(40px,10vw,64px);font-weight:normal;line-height:1.1;margin:20px 0}
+h1 em{color:#a34d5a}
+p{line-height:1.9;font-size:14px}
+button,.link{background:#a34d5a;color:white;border:0;padding:13px 20px;cursor:pointer;text-decoration:none;display:inline-block;margin-top:12px;font-size:14px}
+h2{font-weight:normal;font-size:28px}
+.section{padding:25px 0;text-align:center}
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:25px 0}
+.photo{background:#f0e3db;aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;text-align:center;padding:12px;color:#92777e;font-size:13px;overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover}
+.polaroid{background:white;padding:9px 9px 15px;box-shadow:0 3px 12px #0001;transform:rotate(-2deg)}
+.polaroid:nth-child(even){transform:rotate(2deg);margin-top:15px}
+.caption{text-align:center;padding-top:12px;font-size:14px}
+.card{background:#f2e6d7;text-align:left;padding:22px;margin:18px 0;line-height:1.9}
+.letter{border:1px dashed #cba6a6;padding:25px 18px;text-align:center;margin:30px 0}
+#letter{display:none;text-align:left;white-space:pre-line;line-height:2;font-size:16px;margin-top:20px}
+.music{background:#e9e1ed;padding:25px 15px;text-align:center;margin:30px 0}
+footer{text-align:center;padding:25px;border-top:1px dashed #cbb8a8;line-height:2}
+</style>
+</head>
+<body>
+<main class="page">
+<header>BİZİM KÜÇÜK DÜNYAMIZ ♡</header>
+
+<section class="hero">
+<small>SANA, SADECE SANA</small>
+<h1>Bizim küçük<br><em>hikâyemiz.</em></h1>
+<p>Bunca insanın arasında,<br>
+benim en güzel hikâyelerimden biri sensin.<br>
+Bu sayfa da ikimize ait küçük bir dünya olsun.</p>
+<button onclick="document.getElementById('anilar').scrollIntoView({behavior:'smooth'})">Anılarımıza git ↓</button>
+</section>
+
+<section class="section" id="anilar">
+<small>FOTOĞRAF ALBÜMÜMÜZ</small>
+<h2>Küçük anlar, kocaman hisler.</h2>
+<p>En sevdiğimiz fotoğraflar burada birikecek.</p>
+<div class="gallery">
+<div class="polaroid"><div class="photo">♡<br>İlk fotoğrafımız buraya</div><div class="caption">Sen ve ben</div></div>
+<div class="polaroid"><div class="photo">♡<br>Güzel bir anımız buraya</div><div class="caption">İyi ki o gün</div></div>
+<div class="polaroid"><div class="photo">♡<br>Bir başka anımız buraya</div><div class="caption">En sevdiğim ikili</div></div>
+<div class="polaroid"><div class="photo">♡<br>Yeni anılarımız buraya</div><div class="caption">Devamı gelecek</div></div>
+</div>
+</section>
+
+<section class="section">
+<small>ANILARIMIZDAN</small>
+<h2>Bizden birkaç şey.</h2>
+<div class="card"><small>NOT 01</small><h3>En sevdiğim tesadüf</h3>
+Birbirimizi bulmuş olmak. Koca bir dünyada yollarımızın kesişmesi hâlâ çok güzel.</div>
+<div class="card"><small>NOT 02</small><h3>Bizim saçma anlarımız</h3>
+Kimsenin anlamadığı şakalarımız, birlikte gülmelerimiz ve sıradan günleri güzelleştiren küçük şeyler.</div>
+<div class="card"><small>NOT 03</small><h3>Daha yaşayacaklarımız var.</h3>
+Henüz çekmediğimiz fotoğraflar, gitmediğimiz yerler ve biriktireceğimiz bir sürü anı...</div>
+</section>
+
+<section class="letter">
+<small>SANA ÖZEL BİR MEKTUP</small>
+<h2>Açmadan gitme.</h2>
+<p>Bu küçük mektup sadece senin için.</p>
+<button onclick="toggleLetter()" id="letterButton">Mektubu aç ♡</button>
+<div id="letter">Yakışıklım,
+
+Bu siteyi senin için hazırlamak istedim.
+Çünkü birlikte yaşadığımız güzel şeyleri
+bir yerde toplamak istiyorum.
+
+Her anımız mükemmel olmak zorunda değil.
+Bazen en sıradan günler bile seninle
+benim için çok özel oluyor.
+
+Bu sayfa, hikâyemizin küçük bir hatırası olsun.
+Bir gün açıp baktığında yüzünde bir gülümseme
+oluşturabilsin istiyorum.
+
+İyi ki hayatımdasın sevgilim.
+İyi ki biz olmuşuz.
+
+Seni seviyorum. ♡</div>
+</section>
+
+<section class="music">
+<small>BİZİM ŞARKIMIZ</small>
+<h2>Bu şarkı sana gelsin. ♫</h2>
+<p>Birlikte bizi hatırlatan şarkıyı buraya ekleyeceğiz.</p>
+<a class="link" href="https://open.spotify.com/" target="_blank" rel="noopener">Şarkımızı dinle ↗</a>
+</section>
+
+<footer>
+<span style="color:#a34d5a;font-size:25px">♥</span><br>
+İyi ki sen. İyi ki biz.<br>
+<small>Hikâyemiz devam ediyor...</small>
+</footer>
+</main>
+<script>
+function toggleLetter(){
+const m=document.getElementById('letter');
+const b=document.getElementById('letterButton');
+const open=m.style.display==='block';
+m.style.display=open?'none':'block';
+b.textContent=open?'Mektubu aç ♡':'Mektubu kapat ♡';
+}
+</script>
+</body>
+</html>
