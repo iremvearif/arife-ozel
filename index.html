@@ -113,5 +113,95 @@ m.style.display=open?'none':'block';
 b.textContent=open?'Mektubu aç ♡':'Mektubu kapat ♡';
 }
 </script>
+<!-- Bizim fotoğraf albümümüz -->
+<section id="our-photo-gallery">
+  <h2>Bizim küçük dünyamız ♡</h2>
+  <p>Biriktirdiğimiz güzel anılar...</p>
+  <div id="our-photos">Fotoğraflarımız hazırlanıyor ♡</div>
+</section>
+
+<style>
+#our-photo-gallery {
+  padding: 30px 16px;
+  text-align: center;
+  color: #33364b;
+}
+#our-photo-gallery h2 {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+#our-photo-gallery p {
+  margin-bottom: 24px;
+}
+#our-photos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  max-width: 850px;
+  margin: auto;
+}
+.our-photo {
+  background: #fffaf3;
+  padding: 8px 8px 18px;
+  box-shadow: 2px 4px 10px #00000018;
+  transform: rotate(-1deg);
+}
+.our-photo:nth-child(even) {
+  transform: rotate(1deg);
+}
+.our-photo img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+}
+@media (min-width: 600px) {
+  #our-photos {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+</style>
+
+<script>
+(async function () {
+  const gallery = document.getElementById("our-photos");
+  try {
+    const response = await fetch(
+      "https://api.github.com/repos/iremvearif/arife-ozel/contents"
+    );
+    if (!response.ok) throw new Error("Fotoğraflar alınamadı");
+
+    const files = await response.json();
+    const photos = files.filter(file =>
+      file.type === "file" &&
+      /\.(jpe?g|png|webp|gif|avif)$/i.test(file.name)
+    );
+
+    gallery.replaceChildren();
+
+    if (!photos.length) {
+      gallery.textContent = "Fotoğraflar bulunamadı ♡";
+      return;
+    }
+
+    photos.forEach(file => {
+      const frame = document.createElement("div");
+      frame.className = "our-photo";
+
+      const img = document.createElement("img");
+      img.src = file.download_url;
+      img.alt = "Bizim güzel bir anımız ♡";
+      img.loading = "lazy";
+
+      frame.appendChild(img);
+      gallery.appendChild(frame);
+    });
+  } catch (error) {
+    gallery.textContent =
+      "Albümümüz şu an yüklenemedi. Biraz sonra tekrar deneyelim ♡";
+  }
+})();
+</script>
+
 </body>
 </html>
