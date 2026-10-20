@@ -348,6 +348,70 @@ footer {
   .time-box { padding: 12px 2px; }
   .time-box span { font-size: 8px; letter-spacing: 0; }
 }
+.song-box {
+  max-width: 420px;
+  margin: 24px auto;
+  padding: 0 16px;
+  text-align: left;
+}
+
+.song {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 17px 14px;
+  margin: 10px 0;
+  color: #302e30;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.58);
+  border: 1px solid rgba(150, 110, 120, 0.16);
+  border-radius: 14px;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.song:active {
+  transform: scale(0.98);
+  background: #f5e3e8;
+}
+
+.song-number {
+  color: #b7798d;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.song-info {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.song-info strong {
+  font-size: 15px;
+  font-weight: normal;
+}
+
+.song-info small {
+  color: #8b777b;
+  font-size: 12px;
+}
+
+.song-play {
+  color: #b7798d;
+  font-size: 20px;
+}
+
+@media (max-width: 480px) {
+  .song-box {
+    padding: 0 12px;
+  }
+
+  .song {
+    padding: 15px 12px;
+  }
+}
+
 </style>
 </head>
 
