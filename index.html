@@ -169,8 +169,33 @@ header {
   pointer-events: none;
 }
 
-.flower.one { left: 43%; top: 10%; transform: rotate(-20deg); }
-.flower.two { right: 39%; bottom: 10%; transform: rotate(20deg); }
+.flower {
+  position: absolute;
+  z-index: 6;
+  width: 76px;
+  height: 76px;
+  pointer-events: none;
+  opacity: 0.95;
+  filter: drop-shadow(0 2px 3px #b96d8a35);
+}
+
+.flower.one {
+  left: 39%;
+  top: 5%;
+  transform: rotate(-18deg);
+}
+
+.flower.two {
+  right: 35%;
+  bottom: 5%;
+  transform: rotate(22deg) scale(0.85);
+}
+
+.flower svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
 
 .section {
   padding: 26px 0;
@@ -357,8 +382,36 @@ footer {
     <p>Sevgilim, seni çok seviyorum. ♡</p>
   </div>
 
-  <span class="flower one" aria-hidden="true">✿</span>
-  <span class="flower two" aria-hidden="true">✿</span>
+ <span class="flower one" aria-hidden="true">
+  <svg viewBox="0 0 100 100" fill="none">
+    <g fill="#f4b6cc" stroke="#d77d9e" stroke-width="1.5">
+      <ellipse cx="50" cy="29" rx="11" ry="27" transform="rotate(0 50 50)"/>
+      <ellipse cx="50" cy="29" rx="11" ry="27" transform="rotate(72 50 50)"/>
+      <ellipse cx="50" cy="29" rx="11" ry="27" transform="rotate(144 50 50)"/>
+      <ellipse cx="50" cy="29" rx="11" ry="27" transform="rotate(216 50 50)"/>
+      <ellipse cx="50" cy="29" rx="11" ry="27" transform="rotate(288 50 50)"/>
+    </g>
+    <circle cx="50" cy="50" r="5" fill="#d69a45"/>
+    <g stroke="#c58b3d" stroke-width="1.5" stroke-linecap="round">
+      <path d="M50 50 L38 35 M50 50 L62 35 M50 50 L35 48 M50 50 L65 48"/>
+    </g>
+  </svg>
+</span>
+<span class="flower two" aria-hidden="true">
+  <svg viewBox="0 0 100 100" fill="none">
+    <g fill="#f7c4d6" stroke="#d77d9e" stroke-width="1.5">
+      <ellipse cx="50" cy="29" rx="11" ry="27"/>
+      <ellipse cx="50" cy="29" rx="11" ry="27" transform="rotate(72 50 50)"/>
+      <ellipse cx="50" cy="29" rx="11" ry="27" transform="rotate(144 50 50)"/>
+      <ellipse cx="50" cy="29" rx="11" ry="27" transform="rotate(216 50 50)"/>
+      <ellipse cx="50" cy="29" rx="11" ry="27" transform="rotate(288 50 50)"/>
+    </g>
+    <circle cx="50" cy="50" r="5" fill="#d69a45"/>
+    <g stroke="#c58b3d" stroke-width="1.5" stroke-linecap="round">
+      <path d="M50 50 L38 35 M50 50 L62 35 M50 50 L35 48 M50 50 L65 48"/>
+    </g>
+  </svg>
+</span>
 </section>
 
 <section class="letter" id="letterSection">
