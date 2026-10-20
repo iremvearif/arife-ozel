@@ -10,17 +10,17 @@
 
 body {
   margin: 0;
-  background: #e9e2da;
-  color: #302e30;
+  background: #eadde0;
+  color: #44353c;
   font-family: Georgia, serif;
 }
 
 .page {
-  max-width: 760px;
+  max-width: 900px;
   margin: auto;
   min-height: 100vh;
   padding: 20px 18px;
-  background: #f8f5ef;
+  background: #fcf5f2;
 }
 
 header {
@@ -28,46 +28,50 @@ header {
   font: 10px Arial, sans-serif;
   letter-spacing: 3px;
   padding: 16px 0 22px;
-  border-bottom: 1px solid #ded5cb;
+  border-bottom: 1px solid #ead2d9;
 }
 
 .intro {
   text-align: center;
-  padding: 28px 0 12px;
+  padding: 28px 0 18px;
 }
 
 .intro small, .eyebrow {
   font: 10px Arial, sans-serif;
   letter-spacing: 2px;
-  color: #8b5558;
+  color: #a56f80;
 }
 
 .intro h1 {
-  font-size: clamp(32px, 8vw, 52px);
+  font-size: clamp(32px, 7vw, 52px);
   font-weight: normal;
-  line-height: 1.05;
+  line-height: 1.08;
   margin: 12px 0;
 }
 
-.intro p {
+.intro p, .description {
   font: 13px/1.8 Arial, sans-serif;
-  color: #77716e;
+  color: #8e7b80;
 }
 
-/* Modern, üst üste fotoğraf kolajı */
+/* Pinterest moodboard kolajı */
 .collage {
   position: relative;
-  height: 570px;
-  margin: 10px -4px 28px;
+  height: 620px;
+  margin: 8px -4px 30px;
   overflow: hidden;
-  background: #eee7de;
+  background:
+    radial-gradient(ellipse at 15% 15%, #f9e9ec 0, transparent 45%),
+    radial-gradient(ellipse at 85% 85%, #ead0d8 0, transparent 48%),
+    #f4e7e5;
+  border-radius: 3px;
 }
 
 .collage-photo {
   position: absolute;
-  padding: 4px;
-  background: #fffdf9;
-  box-shadow: 0 5px 18px #35282020;
+  padding: 6px;
+  background: #fffaf7;
+  box-shadow: 0 7px 22px #65434c24;
   overflow: hidden;
 }
 
@@ -78,12 +82,41 @@ header {
   object-fit: cover;
 }
 
-.p1 { left: 2%; top: 4%; width: 39%; height: 205px; transform: rotate(-7deg); }
-.p2 { right: 3%; top: 3%; width: 40%; height: 185px; transform: rotate(5deg); }
-.p3 { left: 1%; top: 40%; width: 34%; height: 200px; transform: rotate(5deg); }
-.p4 { right: 0; top: 39%; width: 37%; height: 210px; transform: rotate(-6deg); }
-.p5 { left: 17%; bottom: 2%; width: 33%; height: 165px; transform: rotate(-4deg); }
-.p6 { right: 14%; bottom: 1%; width: 32%; height: 175px; transform: rotate(6deg); }
+.p1 {
+  left: 3%;
+  top: 5%;
+  width: 40%;
+  height: 225px;
+  transform: rotate(-6deg);
+  z-index: 2;
+}
+
+.p2 {
+  right: 3%;
+  top: 4%;
+  width: 39%;
+  height: 205px;
+  transform: rotate(5deg);
+  z-index: 1;
+}
+
+.p3 {
+  left: 2%;
+  bottom: 5%;
+  width: 37%;
+  height: 215px;
+  transform: rotate(4deg);
+  z-index: 2;
+}
+
+.p4 {
+  right: 3%;
+  bottom: 5%;
+  width: 38%;
+  height: 225px;
+  transform: rotate(-5deg);
+  z-index: 2;
+}
 
 .center-note {
   position: absolute;
@@ -91,25 +124,35 @@ header {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%) rotate(-2deg);
-  width: 47%;
-  max-width: 290px;
-  padding: 27px 12px;
+  width: 43%;
+  max-width: 300px;
+  padding: 25px 12px;
   text-align: center;
-  background: #fffdf9;
-  box-shadow: 0 8px 25px #35282025;
+  color: #7f5362;
+  background:
+    linear-gradient(#fffaf8eF, #fffaf8eF),
+    repeating-linear-gradient(
+      0deg,
+      #e8cfd5 0px,
+      #e8cfd5 1px,
+      transparent 1px,
+      transparent 24px
+    );
+  border: 1px solid #eddae0;
+  box-shadow: 0 8px 25px #65434c24;
 }
 
 .center-note .tiny {
   font: 9px Arial, sans-serif;
   letter-spacing: 2px;
-  color: #8b5558;
+  color: #b17a8b;
 }
 
 .center-note h2 {
-  font-size: clamp(20px, 5vw, 29px);
+  font-size: clamp(20px, 4.8vw, 30px);
   font-weight: normal;
-  line-height: 1.2;
-  margin: 15px 0 10px;
+  line-height: 1.25;
+  margin: 16px 0 12px;
 }
 
 .center-note p {
@@ -120,65 +163,31 @@ header {
 .flower {
   position: absolute;
   z-index: 6;
-  color: #fff;
-  text-shadow: 0 1px 5px #8d8179;
+  color: #fffdfb;
+  text-shadow: 0 1px 5px #b89ba4;
   font-size: 35px;
+  pointer-events: none;
 }
 
-.flower.one { left: 42%; top: 12%; transform: rotate(-20deg); }
-.flower.two { right: 36%; bottom: 12%; transform: rotate(20deg); }
+.flower.one { left: 43%; top: 10%; transform: rotate(-20deg); }
+.flower.two { right: 39%; bottom: 10%; transform: rotate(20deg); }
 
 .section {
-  padding: 28px 0;
+  padding: 26px 0;
   text-align: center;
 }
 
-h2 {
-  font-weight: normal;
-}
-
-.description {
-  font: 13px/1.8 Arial, sans-serif;
-  color: #77716e;
-}
-
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 17px 13px;
-  margin-top: 25px;
-}
-
-.gallery-photo {
-  background: #fffdf9;
-  padding: 6px 6px 12px;
-  box-shadow: 0 3px 12px #35282012;
-}
-
-.gallery-photo:nth-child(3n + 1) {
-  transform: rotate(-2deg);
-}
-
-.gallery-photo:nth-child(3n + 2) {
-  transform: rotate(1.5deg);
-}
-
-.gallery-photo img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-}
+h2 { font-weight: normal; }
 
 .letter {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  padding: 28px 20px;
-  margin: 35px 0;
+  padding: 30px 20px;
+  margin: 32px 0;
   text-align: center;
-  border: 1px solid #ddc9c4;
-  background: #fffaf1;
+  border: 1px solid #e8cbd4;
+  background: #fff8f5;
 }
 
 .letter::before {
@@ -189,19 +198,18 @@ h2 {
   background-image: var(--letter-photo);
   background-size: cover;
   background-position: center;
-  opacity: .15;
+  opacity: .17;
 }
 
-.letter h2 {
-  font-size: 28px;
-}
+.letter h2 { font-size: 28px; }
 
 button, .link {
   border: 0;
-  background: #8d5158;
+  border-radius: 3px;
+  background: #bd8799;
   color: white;
   padding: 12px 18px;
-  font-size: 13px;
+  font: 13px Arial, sans-serif;
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
@@ -218,27 +226,102 @@ button, .link {
 }
 
 .music {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   text-align: center;
-  background: #ece6e9;
-  padding: 25px 14px;
+  background: #ead8de;
+  padding: 30px 14px;
   margin: 30px 0;
 }
 
+.music::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background-image: var(--song-photo);
+  background-size: cover;
+  background-position: center;
+  opacity: .18;
+}
+
+.music h2 { color: #785364; }
+
+.countdown {
+  margin-top: 30px;
+  padding: 30px 14px;
+  text-align: center;
+  color: #865b6b;
+  background: #f5e2e8;
+  border: 1px solid #e9c8d3;
+}
+
+.countdown .eyebrow { color: #aa7889; }
+
+.countdown h2 {
+  font-size: clamp(23px, 5vw, 34px);
+  margin: 14px 0;
+}
+
+.timer {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  max-width: 550px;
+  margin: 22px auto;
+}
+
+.time-box {
+  min-width: 0;
+  padding: 14px 3px;
+  background: #fff8fa;
+  border: 1px solid #edced8;
+  border-radius: 5px;
+}
+
+.time-box strong {
+  display: block;
+  font: clamp(20px, 5vw, 32px) Georgia, serif;
+  color: #985f75;
+}
+
+.time-box span {
+  display: block;
+  margin-top: 7px;
+  font: 9px Arial, sans-serif;
+  letter-spacing: 1px;
+  color: #ad8291;
+}
+
+.countdown-note {
+  font: 12px/1.8 Arial, sans-serif;
+  color: #a17887;
+}
+
 footer {
-  border-top: 1px solid #ded5cb;
+  border-top: 1px solid #ead2d9;
   text-align: center;
   padding: 25px 0 12px;
   font: 12px/2 Arial, sans-serif;
-  color: #756d69;
+  color: #987f87;
 }
 
-@media (max-width: 420px) {
-  .collage { height: 500px; }
-  .p1, .p2 { height: 160px; }
-  .p3, .p4 { height: 175px; }
-  .p5, .p6 { height: 140px; }
-  .center-note { width: 52%; padding: 22px 8px; }
-  .flower { font-size: 28px; }
+@media (max-width: 520px) {
+  .page { padding: 14px 12px; }
+  .collage { height: 510px; }
+  .p1 { height: 170px; }
+  .p2 { height: 160px; }
+  .p3 { height: 165px; }
+  .p4 { height: 175px; }
+  .center-note {
+    width: 48%;
+    padding: 22px 7px;
+  }
+  .flower { font-size: 27px; }
+  .timer { gap: 5px; }
+  .time-box { padding: 12px 2px; }
+  .time-box span { font-size: 8px; letter-spacing: 0; }
 }
 </style>
 </head>
@@ -249,28 +332,33 @@ footer {
 <header>OUR LITTLE WORLD ♡</header>
 
 <section class="intro">
-  <small>JUST YOU & ME</small>
+  <small>JUST YOU &amp; ME</small>
   <h1>Bizim küçük<br>hikâyemiz.</h1>
   <p>Bir sürü anı. Bir sürü his.<br>İyi ki biz.</p>
 </section>
 
 <section class="collage" id="collage">
+  <div class="collage-photo p1">
+    <img data-photo="IMG-20260425-WA0016.jpg" alt="Birlikte güzel bir anımız">
+  </div>
+  <div class="collage-photo p2">
+    <img data-photo="Screenshot_20261018_150023_Gallery.jpg" alt="Birlikte güzel bir anımız">
+  </div>
+  <div class="collage-photo p3">
+    <img data-photo="Screenshot_20261018_151936_Gallery.jpg" alt="Birlikte güzel bir anımız">
+  </div>
+  <div class="collage-photo p4">
+    <img data-photo="IMG-20260415-WA0024.jpg" alt="Birlikte güzel bir anımız">
+  </div>
+
   <div class="center-note">
-    <div class="tiny">JUST US · ONE YEAR</div>
-    <h2>1. yılımız<br>kutlu olsun.</h2>
+    <div class="tiny">OUR LITTLE MEMORIES</div>
+    <h2>2 Kasım<br>2026</h2>
     <p>Sevgilim, seni çok seviyorum. ♡</p>
   </div>
-  <span class="flower one" aria-hidden="true">❀</span>
-  <span class="flower two" aria-hidden="true">❀</span>
-</section>
 
-<section class="section">
-  <div class="eyebrow">THE LITTLE THINGS</div>
-  <h2>Anılarımız.</h2>
-  <p class="description">Birlikte biriktirdiğimiz güzel şeyler.</p>
-  <div class="gallery" id="gallery">
-    Fotoğraflar yükleniyor ♡
-  </div>
+  <span class="flower one" aria-hidden="true">✿</span>
+  <span class="flower two" aria-hidden="true">✿</span>
 </section>
 
 <section class="letter" id="letterSection">
@@ -303,8 +391,38 @@ Seni seviyorum. ♡</div>
   <div class="eyebrow">OUR SONG</div>
   <h2>Bu şarkı sana gelsin. ♫</h2>
   <p class="description">Bizi hatırlatan şarkı.</p>
-  <a class="link" href="https://open.spotify.com/"
+  <a class="link"
+     href="https://open.spotify.com/"
      target="_blank" rel="noopener">Şarkımızı dinle ↗</a>
+</section>
+
+<section class="countdown" id="countdown">
+  <div class="eyebrow">02 · 11 · 2027</div>
+  <h2>İkinci yılımıza ♡</h2>
+  <p class="countdown-note">Birlikte geçireceğimiz nice yıllara.</p>
+
+  <div class="timer">
+    <div class="time-box">
+      <strong id="days">000</strong>
+      <span>GÜN</span>
+    </div>
+    <div class="time-box">
+      <strong id="hours">00</strong>
+      <span>SAAT</span>
+    </div>
+    <div class="time-box">
+      <strong id="minutes">00</strong>
+      <span>DAKİKA</span>
+    </div>
+    <div class="time-box">
+      <strong id="seconds">00</strong>
+      <span>SANİYE</span>
+    </div>
+  </div>
+
+  <p class="countdown-note" id="countdownMessage">
+    Her saniye, yeni bir anıya daha yakın…
+  </p>
 </section>
 
 <footer>
@@ -316,87 +434,89 @@ Seni seviyorum. ♡</div>
 
 <script>
 function toggleLetter() {
-  const m = document.getElementById("letter");
-  const b = document.getElementById("letterButton");
-  const open = m.style.display === "block";
-  m.style.display = open ? "none" : "block";
-  b.textContent = open ? "Mektubu aç ♡" : "Mektubu kapat ♡";
+  const message = document.getElementById("letter");
+  const button = document.getElementById("letterButton");
+  const isOpen = message.style.display === "block";
+
+  message.style.display = isOpen ? "none" : "block";
+  button.textContent = isOpen ? "Mektubu aç ♡" : "Mektubu kapat ♡";
 }
 
-(async function () {
-  const gallery = document.getElementById("gallery");
-  const collage = document.getElementById("collage");
+async function loadChosenPhotos() {
+  const repo = "iremvearif/arife-ozel";
 
   try {
     const response = await fetch(
-      "https://api.github.com/repos/iremvearif/arife-ozel/contents"
+      "https://api.github.com/repos/" + repo + "/contents"
     );
 
-    if (!response.ok) throw new Error("Fotoğraflar alınamadı");
+    if (!response.ok) throw new Error("Fotoğraflar yüklenemedi");
 
     const files = await response.json();
+    const fileMap = new Map(files.map(file => [file.name, file]));
 
-    const photos = files
-      .filter(file =>
-        file.type === "file" &&
-        /\.(jpe?g|png|webp|gif|avif)$/i.test(file.name)
-      )
-      .sort((a, b) => a.name.localeCompare(b.name));
+    document.querySelectorAll("[data-photo]").forEach(img => {
+      const filename = img.dataset.photo;
+      const file = fileMap.get(filename);
 
-    if (!photos.length) {
-      gallery.textContent = "Fotoğraflar bulunamadı ♡";
-      return;
-    }
-
-    // İlk altı fotoğraf üstteki kolajda görünür.
-    photos.slice(0, 6).forEach((file, index) => {
-      const frame = document.createElement("div");
-      frame.className = "collage-photo p" + (index + 1);
-
-      const img = document.createElement("img");
-      img.src = file.download_url;
-      img.alt = "Bizim bir anımız";
-      img.loading = "lazy";
-
-      frame.appendChild(img);
-      collage.appendChild(frame);
+      if (file && file.download_url) {
+        img.src = file.download_url;
+      } else {
+        img.alt = "Fotoğraf bulunamadı: " + filename;
+      }
     });
 
-    // Yedinci fotoğraf mektubun arka planında soluk görünür.
-    if (photos[6]) {
+    const letterPhoto = fileMap.get("IMG-20261003-WA0015.jpg");
+    if (letterPhoto && letterPhoto.download_url) {
       document.getElementById("letterSection").style.setProperty(
         "--letter-photo",
-        'url("' + photos[6].download_url + '")'
+        'url("' + letterPhoto.download_url + '")'
       );
     }
 
-    // Kalan fotoğraflar alttaki galeride görünür.
-    const remainingPhotos = photos.slice(7);
-
-    gallery.replaceChildren();
-
-    remainingPhotos.forEach(file => {
-      const frame = document.createElement("div");
-      frame.className = "gallery-photo";
-
-      const img = document.createElement("img");
-      img.src = file.download_url;
-      img.alt = "Bizim bir anımız";
-      img.loading = "lazy";
-
-      frame.appendChild(img);
-      gallery.appendChild(frame);
-    });
-
-    if (!remainingPhotos.length) {
-      gallery.textContent = "Yeni anılarımız burada birikecek ♡";
+    const songPhoto = fileMap.get("IMG-20260425-WA0013.jpg");
+    if (songPhoto && songPhoto.download_url) {
+      document.querySelector(".music").style.setProperty(
+        "--song-photo",
+        'url("' + songPhoto.download_url + '")'
+      );
     }
 
   } catch (error) {
-    gallery.textContent =
-      "Fotoğraf albümü yüklenemedi. Biraz sonra tekrar deneyelim ♡";
+    console.error("Fotoğraflar yüklenemedi:", error);
   }
-})();
+}
+
+function updateCountdown() {
+  // Türkiye saatiyle 2 Kasım 2027, 00.00
+  const target = new Date("2027-11-02T00:00:00+03:00").getTime();
+  const now = Date.now();
+  const difference = target - now;
+
+  const message = document.getElementById("countdownMessage");
+
+  if (difference <= 0) {
+    ["days", "hours", "minutes", "seconds"].forEach(id => {
+      document.getElementById(id).textContent = "00";
+    });
+    message.textContent = "İkinci yıl dönümümüz kutlu olsun sevgilim! ♡";
+    return;
+  }
+
+  const day = Math.floor(difference / 86400000);
+  const hour = Math.floor((difference % 86400000) / 3600000);
+  const minute = Math.floor((difference % 3600000) / 60000);
+  const second = Math.floor((difference % 60000) / 1000);
+
+  document.getElementById("days").textContent = String(day).padStart(3, "0");
+  document.getElementById("hours").textContent = String(hour).padStart(2, "0");
+  document.getElementById("minutes").textContent = String(minute).padStart(2, "0");
+  document.getElementById("seconds").textContent = String(second).padStart(2, "0");
+}
+
+loadChosenPhotos();
+updateCountdown();
+setInterval(updateCountdown, 1000);
 </script>
 
 </body>
