@@ -836,6 +836,22 @@ const menuToast = document.getElementById("menuToast");
 
 let menuToastTimer;
 
+  const surpriseNotes = [
+  "Bugün sevgiline haber vermeyi unuttun sankiiiii",
+  "Seni şimdiye kadar ki bütün zamanlardan daha fazla seviyorum aşkım",
+  "Yorulduğunu biliyorum sevgilim ama senin ne kadar güçlü olduğunu biliyorum benn.",
+  "Biricik sevgilinin aklından bugünde çıkmamayı başardın.",
+  "Bir tavuklu pilav yap, yiyelim yyyaaaaa",
+  "Bugün biraz ilgisiz bırakılmış olabilir miyim acabaaa, ne dersin",
+  "Canının bir tatlı istediğini söyledi kuşlar. Sevgiline hemen haber ver, o sana elleriyle seve seve istediğini yaparrr.",
+  "İremin bugün yine senden başka bir şey düşünemedi bu yüzden sana biraz kızgın.",
+  "Artık güzelin olmadığımdan şüphelenmeye başlıyorum ama. Belki bugün bana bunu hatırlatırsın yakışıklım.",
+  "Hayatımın geri kalanını sensiz hayal bile edemiyorum aşkım.",
+  "Her gün bu kadar yakışıklı olma lütfen, kıskanıyorum.",
+  "Bugün nasılmış benim sevgilimmmm, belki anlatmak istediğin canını sıkan bir şey vardır ama biliyorsun ki her an bana her şeyi anlatabilirsin bir tanemmm.",
+  "Sana ne zaman tuzlu kahve ikram ediyorum, artık belirlemesek miiii"
+];
+
 function setMenuOpen(open) {
 menuToggle.classList.toggle("is-open", open);
 sideMenu.classList.toggle("is-open", open);
@@ -866,22 +882,25 @@ if (event.key === "Escape") setMenuOpen(false);
 });
 
 document.querySelectorAll(".drawer-link").forEach(button => {
-button.addEventListener("click", () => {
-const targetId = button.dataset.menuTarget;
-const note = button.dataset.menuNote;
+  button.addEventListener("click", () => {
+    const targetId = button.dataset.menuTarget;
+    const note = button.dataset.menuNote;
+    const isSurprise = button.textContent.includes("Bugünün sürprizi");
 
-setMenuOpen(false);
+    setMenuOpen(false);
 
-if (targetId) {
-  document.getElementById(targetId)?.scrollIntoView({
-    behavior: "smooth",
-    block: "start"
+    if (targetId) {
+      document.getElementById(targetId)?.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    } else if (isSurprise) {
+      const randomIndex = Math.floor(Math.random() * surpriseNotes.length);
+      showMenuToast(surpriseNotes[randomIndex]);
+    } else if (note) {
+      showMenuToast(note);
+    }
   });
-} else if (note) {
-  showMenuToast(note);
-}
-
-});
 });
 function toggleLetter() {
   const message = document.getElementById("letter");
