@@ -827,6 +827,8 @@ Seni seviyorum. ♡</div>
 </footer>
 
 </main>
+
+<script>
 const menuToggle = document.getElementById("menuToggle");
 const sideMenu = document.getElementById("sideMenu");
 const menuOverlay = document.getElementById("menuOverlay");
@@ -835,62 +837,52 @@ const menuToast = document.getElementById("menuToast");
 let menuToastTimer;
 
 function setMenuOpen(open) {
-  menuToggle.classList.toggle("is-open", open);
-  sideMenu.classList.toggle("is-open", open);
-  menuOverlay.classList.toggle("is-open", open);
-
-  menuToggle.setAttribute("aria-expanded", String(open));
-  menuToggle.setAttribute(
-    "aria-label",
-    open ? "Menüyü kapat" : "Menüyü aç"
-  );
-  sideMenu.setAttribute("aria-hidden", String(!open));
-
-  document.body.style.overflow = open ? "hidden" : "";
+menuToggle.classList.toggle("is-open", open);
+sideMenu.classList.toggle("is-open", open);
+menuOverlay.classList.toggle("is-open", open);
+menuToggle.setAttribute("aria-expanded", String(open));
+menuToggle.setAttribute("aria-label", open ? "Menüyü kapat" : "Menüyü aç");
+sideMenu.setAttribute("aria-hidden", String(!open));
+document.body.style.overflow = open ? "hidden" : "";
 }
 
 function showMenuToast(message) {
-  menuToast.textContent = message;
-  menuToast.classList.add("is-visible");
-
-  clearTimeout(menuToastTimer);
-  menuToastTimer = setTimeout(() => {
-    menuToast.classList.remove("is-visible");
-  }, 2800);
+menuToast.textContent = message;
+menuToast.classList.add("is-visible");
+clearTimeout(menuToastTimer);
+menuToastTimer = setTimeout(() => {
+menuToast.classList.remove("is-visible");
+}, 2800);
 }
 
 menuToggle.addEventListener("click", () => {
-  setMenuOpen(!sideMenu.classList.contains("is-open"));
+setMenuOpen(!sideMenu.classList.contains("is-open"));
 });
 
-menuOverlay.addEventListener("click", () => {
-  setMenuOpen(false);
-});
+menuOverlay.addEventListener("click", () => setMenuOpen(false));
 
 document.addEventListener("keydown", event => {
-  if (event.key === "Escape") {
-    setMenuOpen(false);
-  }
+if (event.key === "Escape") setMenuOpen(false);
 });
 
 document.querySelectorAll(".drawer-link").forEach(button => {
-  button.addEventListener("click", () => {
-    const targetId = button.dataset.menuTarget;
-    const note = button.dataset.menuNote;
+button.addEventListener("click", () => {
+const targetId = button.dataset.menuTarget;
+const note = button.dataset.menuNote;
 
-    setMenuOpen(false);
+setMenuOpen(false);
 
-    if (targetId) {
-      document.getElementById(targetId)?.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-    } else if (note) {
-      showMenuToast(note);
-    }
+if (targetId) {
+  document.getElementById(targetId)?.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
   });
+} else if (note) {
+  showMenuToast(note);
+}
+
 });
-<script>
+});
 function toggleLetter() {
   const message = document.getElementById("letter");
   const button = document.getElementById("letterButton");
