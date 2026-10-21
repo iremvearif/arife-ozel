@@ -411,11 +411,255 @@ footer {
     padding: 15px 12px;
   }
 }
+.menu-toggle {
+  position: fixed;
+  top: 18px;
+  left: 18px;
+  z-index: 1002;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  padding: 10px;
+  margin: 0;
+  border: 1px solid #ead2d9;
+  border-radius: 50%;
+  background: #fcf5f2;
+  box-shadow: 0 3px 14px #65434c18;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 19px;
+  height: 2px;
+  border-radius: 2px;
+  background: #986779;
+  transition: transform .25s, opacity .25s;
+}
+
+.menu-toggle.is-open span:first-child {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.is-open span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.is-open span:last-child {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Arka plan perdesi */
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: #35232d70;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .3s, visibility .3s;
+}
+
+.menu-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Soldan açılan panel */
+.side-menu {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1001;
+  width: min(340px, 86vw);
+  padding: 85px 24px 30px;
+  overflow-y: auto;
+  background: #fcf5f2;
+  border-right: 1px solid #ead2d9;
+  box-shadow: 8px 0 30px #65434c18;
+  transform: translateX(-105%);
+  transition: transform .32s ease;
+  visibility: hidden;
+}
+
+.side-menu.is-open {
+  transform: translateX(0);
+  visibility: visible;
+}
+
+.menu-heading {
+  padding: 8px 0 24px;
+  border-bottom: 1px solid #ead2d9;
+  margin-bottom: 20px;
+}
+
+.menu-heading small {
+  font: 10px Arial, sans-serif;
+  letter-spacing: 2px;
+  color: #a56f80;
+}
+
+.menu-heading h2 {
+  margin: 10px 0 6px;
+  font-size: 27px;
+  font-weight: normal;
+  color: #785364;
+}
+
+.menu-heading p {
+  margin: 0;
+  font: 12px/1.7 Arial, sans-serif;
+  color: #987f87;
+}
+
+.menu-label {
+  margin: 20px 0 10px;
+  font: 10px Arial, sans-serif;
+  letter-spacing: 2px;
+  color: #ad8291;
+}
+
+.drawer-link {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  width: 100%;
+  margin: 7px 0;
+  padding: 14px 12px;
+  text-align: left;
+  border: 1px solid #efdee2;
+  border-radius: 10px;
+  background: #fffaf8;
+  color: #654956;
+  font: 14px Arial, sans-serif;
+  transition: background .2s, transform .2s;
+}
+
+.drawer-link:active {
+  background: #f5e3e8;
+  transform: scale(.98);
+}
+
+.drawer-icon {
+  width: 30px;
+  text-align: center;
+  font-size: 19px;
+}
+
+.menu-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  z-index: 1005;
+  width: max-content;
+  max-width: calc(100vw - 32px);
+  padding: 13px 18px;
+  border: 1px solid #ead2d9;
+  border-radius: 12px;
+  background: #fcf5f2;
+  color: #785364;
+  font: 13px/1.6 Arial, sans-serif;
+  text-align: center;
+  box-shadow: 0 5px 20px #65434c20;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, 10px);
+  transition: opacity .2s, transform .2s, visibility .2s;
+}
+
+.menu-toast.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+@media (max-width: 520px) {
+  .menu-toggle {
+    top: 12px;
+    left: 12px;
+  }
+
+  .side-menu {
+    padding: 78px 20px 24px;
+  }
+}
 
 </style>
 </head>
 
 <body>
+<button class="menu-toggle" id="menuToggle"
+  type="button" aria-label="Menüyü aç"
+  aria-expanded="false" aria-controls="sideMenu">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<nav class="side-menu" id="sideMenu"
+  aria-label="Bizim küçük dünyamız" aria-hidden="true">
+
+  <div class="menu-heading">
+    <small>İREM &amp; ARİF ♡</small>
+    <h2>Bizim küçük<br>dünyamız.</h2>
+    <p>Kaybolursan burada buluşalım.</p>
+  </div>
+
+  <div class="menu-label">KEŞFET</div>
+
+  <button class="drawer-link" type="button"
+    data-menu-note="Birlikte yapmak istediğimiz aktiviteleri birazdan burada toplayacağız. ♡">
+    <span class="drawer-icon">🎟️</span>
+    <span>Birlikte yapalım</span>
+  </button>
+
+  <button class="drawer-link" type="button"
+    data-menu-note="İrem'in favorileri ve küçük mutlulukları burada olacak. 🌷">
+    <span class="drawer-icon">🌷</span>
+    <span>İrem'in dünyası</span>
+  </button>
+
+  <button class="drawer-link" type="button"
+    data-menu-note="Bugünün romantik veya komik sürprizi yakında burada. 💌">
+    <span class="drawer-icon">💌</span>
+    <span>Bugünün sürprizi</span>
+  </button>
+
+  <button class="drawer-link" type="button"
+    data-menu-note="Üç oyunlu oyun köşemizi en son birlikte hazırlayacağız. 🎮">
+    <span class="drawer-icon">🎮</span>
+    <span>Oyunlar</span>
+  </button>
+
+  <div class="menu-label">BİZİM HİKÂYEMİZ</div>
+
+  <button class="drawer-link" type="button"
+    data-menu-target="collage">
+    <span class="drawer-icon">📷</span>
+    <span>Fotoğraflarımız</span>
+  </button>
+
+  <button class="drawer-link" type="button"
+    data-menu-target="letterSection">
+    <span class="drawer-icon">♡</span>
+    <span>Sana mektubum</span>
+  </button>
+
+  <button class="drawer-link" type="button"
+    data-menu-target="countdown">
+    <span class="drawer-icon">🗓️</span>
+    <span>Geri sayımımız</span>
+  </button>
+</nav>
+
+<div class="menu-toast" id="menuToast"
+  role="status" aria-live="polite"></div>
 <main class="page">
 
 <header>OUR LITTLE WORLD ♡</header>
@@ -583,7 +827,69 @@ Seni seviyorum. ♡</div>
 </footer>
 
 </main>
+const menuToggle = document.getElementById("menuToggle");
+const sideMenu = document.getElementById("sideMenu");
+const menuOverlay = document.getElementById("menuOverlay");
+const menuToast = document.getElementById("menuToast");
 
+let menuToastTimer;
+
+function setMenuOpen(open) {
+  menuToggle.classList.toggle("is-open", open);
+  sideMenu.classList.toggle("is-open", open);
+  menuOverlay.classList.toggle("is-open", open);
+
+  menuToggle.setAttribute("aria-expanded", String(open));
+  menuToggle.setAttribute(
+    "aria-label",
+    open ? "Menüyü kapat" : "Menüyü aç"
+  );
+  sideMenu.setAttribute("aria-hidden", String(!open));
+
+  document.body.style.overflow = open ? "hidden" : "";
+}
+
+function showMenuToast(message) {
+  menuToast.textContent = message;
+  menuToast.classList.add("is-visible");
+
+  clearTimeout(menuToastTimer);
+  menuToastTimer = setTimeout(() => {
+    menuToast.classList.remove("is-visible");
+  }, 2800);
+}
+
+menuToggle.addEventListener("click", () => {
+  setMenuOpen(!sideMenu.classList.contains("is-open"));
+});
+
+menuOverlay.addEventListener("click", () => {
+  setMenuOpen(false);
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") {
+    setMenuOpen(false);
+  }
+});
+
+document.querySelectorAll(".drawer-link").forEach(button => {
+  button.addEventListener("click", () => {
+    const targetId = button.dataset.menuTarget;
+    const note = button.dataset.menuNote;
+
+    setMenuOpen(false);
+
+    if (targetId) {
+      document.getElementById(targetId)?.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    } else if (note) {
+      showMenuToast(note);
+    }
+  });
+});
 <script>
 function toggleLetter() {
   const message = document.getElementById("letter");
