@@ -597,7 +597,115 @@ footer {
     padding: 78px 20px 24px;
   }
 }
+/* İREM'İN DÜNYASI */
+.irem-world {
+  padding: 38px 0;
+  text-align: center;
+  scroll-margin-top: 24px;
+}
 
+.irem-world h2 {
+  margin: 10px 0;
+  font-size: clamp(25px, 5vw, 34px);
+  font-weight: normal;
+}
+
+.irem-intro {
+  max-width: 540px;
+  margin: 0 auto 25px;
+  padding: 0 12px;
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+.irem-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  text-align: left;
+}
+
+.irem-card {
+  appearance: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 9px;
+  width: 100%;
+  min-width: 0;
+  padding: 20px 17px;
+  border: 1px solid rgba(145, 103, 119, 0.18);
+  border-radius: 19px;
+  background: linear-gradient(145deg, #fffaf9, #f7e9ed);
+  color: #59414b;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 5px 16px rgba(99, 65, 78, 0.07);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.irem-card:active {
+  transform: scale(0.98);
+}
+
+.irem-card:focus-visible {
+  outline: 2px solid #b87991;
+  outline-offset: 3px;
+}
+
+.irem-card-icon {
+  font-size: 27px;
+}
+
+.irem-card strong {
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 1.5;
+}
+
+.irem-card-hint {
+  font-size: 12px;
+  opacity: 0.72;
+  line-height: 1.5;
+}
+
+.irem-card-content {
+  display: none;
+  width: 100%;
+  padding-top: 8px;
+  border-top: 1px solid rgba(145, 103, 119, 0.18);
+  font-size: 13px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.irem-card-content p {
+  margin: 8px 0;
+}
+
+.irem-card.is-open {
+  box-shadow: 0 8px 22px rgba(99, 65, 78, 0.12);
+}
+
+.irem-card.is-open .irem-card-content {
+  display: block;
+}
+
+.irem-card.is-open .irem-card-hint {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .irem-cards {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .irem-card {
+    padding: 18px;
+  }
+}
 </style>
 </head>
 
@@ -629,11 +737,10 @@ footer {
     <span>Birlikte yapalım</span>
   </button>
 
-  <button class="drawer-link" type="button"
-    data-menu-note="İrem'in favorileri ve küçük mutlulukları burada olacak. 🌷">
-    <span class="drawer-icon">🌷</span>
-    <span>İrem'in dünyası</span>
-  </button>
+  <button class="drawer-link" type="button" data-menu-target="irem-dunyasi">
+  <span class="drawer-icon">🌷</span>
+  <span>İrem'in dünyası</span>
+</button>
 
   <button class="drawer-link" type="button"
     data-menu-note="Bugünün romantik veya komik sürprizi yakında burada. 💌">
@@ -799,6 +906,64 @@ Seni seviyorum. ♡</div>
       </span>
       <span class="song-play">↗</span>
     </a>
+  </div>
+</section>
+<section class="irem-world" id="irem-dunyasi">
+  <div class="eyebrow">A LITTLE GUIDE TO İREM ♡</div>
+  <h2>İrem'in Dünyası 🎀</h2>
+  <p class="irem-intro">
+    Yakışıklım, sevgilini daha iyi tanımaya hoş geldin.
+    Yanlış cevapların ufak sonuçları olabilir... 💅🏻
+  </p>
+
+  <div class="irem-cards">
+    <button class="irem-card" type="button" aria-expanded="false">
+      <span class="irem-card-icon">🎀</span>
+      <strong>İrem kullanım kılavuzu</strong>
+      <span class="irem-card-hint">Kullanırken dikkat ediniz...</span>
+      <div class="irem-card-content">
+        <p>♡ İrem üzgünse hemen çözüm üretmek zorunda değilsin, bazen sadece sarılman yeterli.</p>
+        <p>♡ “Bir şeyim yok” cevabından sonra biraz sevgi göstermek hayat kurtarabilir.</p>
+        <p>♡ İrem'in gönlünü almak için yakışıklı sevgili kontenjanını kullanabilirsin.</p>
+        <p>♡ Bol ilgi, bol sevgi, mümkünse sınırsız sarılma. Yan etkisi: İrem sana daha çok bağlanabilir.</p>
+      </div>
+    </button>
+
+    <button class="irem-card" type="button" aria-expanded="false">
+      <span class="irem-card-icon">💅🏻</span>
+      <strong>Saçma ama önemli kurallar</strong>
+      <span class="irem-card-hint">Anayasa niteliğindedir.</span>
+      <div class="irem-card-content">
+        <p>♡ “Güzel miyim?” sorusu bir bilgi yarışması değildir. Cevap bellidir.</p>
+        <p>♡ Sevgilinin durduk yere attığı fotoğraflara iltifat etmek zorunludur.</p>
+        <p>♡ İrem'in canı bir şey istediyse konu artık ulusal gündemdir.</p>
+        <p>♡ Sarılma talebi reddedilemez. İtirazlar sevgililer mahkemesinde değerlendirilir.</p>
+      </div>
+    </button>
+
+    <button class="irem-card" type="button" aria-expanded="false">
+      <span class="irem-card-icon">🤫</span>
+      <strong>Arif'in gizli dosyası</strong>
+      <span class="irem-card-hint">Gizlilik seviyesi: sevgili</span>
+      <div class="irem-card-content">
+        <p>♡ İrem bazen sadece aklına geldiğin için mesaj atar. Cevap vermen onu mutlu eder.</p>
+        <p>♡ Küçücük bir düşünceli davranışın bile onun için kocaman anlamı olabilir.</p>
+        <p>♡ Bazen senden istediği tek şey, yanında olduğunu hissettirmendir.</p>
+        <p>♡ Bu dosyayı okuduysan sevgiline bir öpücük borçlandın. Kurallar böyle, yapacak bir şey yok. 😌</p>
+      </div>
+    </button>
+
+    <button class="irem-card" type="button" aria-expanded="false">
+      <span class="irem-card-icon">🌷</span>
+      <strong>Bugünkü İrem raporu</strong>
+      <span class="irem-card-hint">Günün resmî açıklaması</span>
+      <div class="irem-card-content">
+        <p>♡ Günlük rapor: Sevgili özleme seviyesi ölçülemeyecek kadar yüksek.</p>
+        <p>♡ İlgi beklentisi: Biraz değil, bir tık daha fazla.</p>
+        <p>♡ Yakışıklı sevgiliye önerilen görev: İrem'e güzel bir mesaj atmak ve onu gülümsetmek.</p>
+        <p><em>Not: Bu rapor şimdilik eğlence amaçlıdır. Günlük ruh hâlini otomatik olarak değiştirmez.</em></p>
+      </div>
+    </button>
   </div>
 </section>
 
@@ -996,6 +1161,14 @@ function updateCountdown() {
 loadChosenPhotos();
 updateCountdown();
 setInterval(updateCountdown, 1000);
+document.querySelectorAll(".irem-card").forEach(card => {
+  card.addEventListener("click", () => {
+    const isOpen = card.classList.contains("is-open");
+
+    card.classList.toggle("is-open", !isOpen);
+    card.setAttribute("aria-expanded", String(!isOpen));
+  });
+});
 </script>
 
 </body>
