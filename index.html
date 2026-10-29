@@ -706,6 +706,121 @@ footer {
     padding: 18px;
   }
 }
+/* ⚽ Penaltı oyunu */
+.tabs {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.penalty-board {
+  overflow: hidden;
+  padding: 16px 12px;
+  border-radius: 18px;
+  background: linear-gradient(#193650 0 24%, #28734d 24% 100%);
+  color: white;
+}
+
+.stadium-lights {
+  text-align: center;
+  color: #fff0ad;
+  letter-spacing: 9px;
+}
+
+.goal {
+  position: relative;
+  height: 180px;
+  max-width: 500px;
+  margin: 12px auto 0;
+  overflow: hidden;
+  border: 5px solid #fffaf0;
+  border-bottom: 3px solid #fffaf0;
+  border-radius: 5px 5px 0 0;
+  background:
+    repeating-linear-gradient(0deg, #ffffff25 0 2px, transparent 2px 16px),
+    repeating-linear-gradient(90deg, #ffffff25 0 2px, transparent 2px 22px);
+}
+
+.keeper {
+  position: absolute;
+  bottom: 0;
+  left: calc(50% - 24px);
+  font-size: 52px;
+  transition: left .35s, transform .35s;
+}
+
+.keeper.dive-left {
+  left: 10%;
+  transform: rotate(-35deg);
+}
+
+.keeper.dive-center {
+  left: calc(50% - 24px);
+  transform: translateY(-8px);
+}
+
+.keeper.dive-right {
+  left: 78%;
+  transform: rotate(35deg);
+}
+
+.ball {
+  position: absolute;
+  z-index: 2;
+  left: calc(50% - 15px);
+  bottom: 8px;
+  font-size: 28px;
+  transition: left .65s, bottom .65s, transform .65s;
+}
+
+.ball.shoot-left {
+  left: 14%;
+  bottom: 75%;
+  transform: scale(.75);
+}
+
+.ball.shoot-center {
+  left: calc(50% - 15px);
+  bottom: 75%;
+  transform: scale(.75);
+}
+
+.ball.shoot-right {
+  left: 80%;
+  bottom: 75%;
+  transform: scale(.75);
+}
+
+.penalty-grass {
+  height: 38px;
+  border-top: 2px solid #fff;
+  background: repeating-linear-gradient(
+    90deg, #347a55 0 55px, #2b6d4b 55px 110px
+  );
+}
+
+.aim-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.aim-buttons button {
+  padding: 10px 4px;
+  background: #f5dce5;
+  color: #633747;
+  font-size: .9rem;
+}
+
+.aim-buttons button.selected {
+  background: #d96f93;
+  color: white;
+}
+
+@media (max-width: 560px) {
+  .tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
 </style>
 </head>
 
