@@ -150,6 +150,95 @@ footer {
     padding: 15px 12px;
   }
 }
+/* Buluşma Çarkı 🎡 */
+.wheel-card {
+  margin: 0 0 24px;
+  padding: 24px 16px;
+  text-align: center;
+  background: #fffaf9;
+  border: 1px solid #ead6dd;
+  border-radius: 20px;
+}
+
+.wheel-card h2 {
+  margin: 0 0 8px;
+  font-size: 24px;
+  font-weight: normal;
+}
+
+.wheel-card .wheel-intro {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #8e737d;
+  margin: 0 0 18px;
+}
+
+.wheel-pointer {
+  color: #a56f80;
+  font-size: 25px;
+  line-height: 1;
+  margin-bottom: -2px;
+  position: relative;
+  z-index: 1;
+}
+
+.date-wheel {
+  width: min(260px, 75vw);
+  aspect-ratio: 1;
+  margin: 0 auto 20px;
+  border: 5px solid #fff;
+  border-radius: 50%;
+  background: conic-gradient(
+    #d9a2b4 0deg 45deg,
+    #f8e8ed 45deg 90deg,
+    #c7839c 90deg 135deg,
+    #f3d4df 135deg 180deg,
+    #d9a2b4 180deg 225deg,
+    #f8e8ed 225deg 270deg,
+    #c7839c 270deg 315deg,
+    #f3d4df 315deg 360deg
+  );
+  box-shadow: 0 4px 14px #9d607033;
+  display: grid;
+  place-items: center;
+  transition: transform 3s cubic-bezier(.12,.72,.12,1);
+}
+
+.wheel-center {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #fffaf9;
+  color: #a56f80;
+  font-size: 29px;
+  box-shadow: 0 2px 8px #9d607033;
+}
+
+.spin-button {
+  padding: 13px 24px;
+  border: none;
+  border-radius: 30px;
+  background: #c78da2;
+  color: white;
+  font-family: Georgia, serif;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.spin-button:disabled {
+  opacity: .65;
+  cursor: wait;
+}
+
+.wheel-result {
+  min-height: 48px;
+  margin: 18px 0 0;
+  color: #a56f80;
+  font-size: 15px;
+  line-height: 1.8;
+}
 </style>
 </head>
 
@@ -166,6 +255,28 @@ footer {
       Her tamamladığımızda bir tanesini işaretleyelim. 🥹
     </p>
   </header>
+<section class="wheel-card">
+    <h2>🎡 Buluşma Çarkı</h2>
+    <p class="wheel-intro">
+      Bugün birlikte ne yapsak? Karar veremiyorsanız
+      çarkı çevirin, planınızı birlikte seçin. ♡
+    </p>
+
+    <div class="wheel-pointer">▼</div>
+
+    <div class="date-wheel" id="dateWheel"
+         role="img" aria-label="Buluşma fikirleri çarkı">
+      <div class="wheel-center">♡</div>
+    </div>
+
+    <button class="spin-button" id="spinDateWheel" type="button">
+      Çarkı çevir 💗
+    </button>
+
+    <p class="wheel-result" id="dateWheelResult" aria-live="polite">
+      Bakalım bugün sizi hangi plan bekliyor… ♡
+    </p>
+  </section>
 
   <section class="progress-card">
     <div class="progress-top">
@@ -411,7 +522,44 @@ checkboxes.forEach(box => {
     updateProgress();
   });
 });
+const dateIdeas = [
+  "Birlikte gün batımını izleyin 🌅",
+  "Baş başa kahve için ☕",
+  "Gece yürüyüşüne çıkın 🌙",
+  "Mini piknik yapın 🧺",
+  "Birlikte sinemaya gidin 🎬",
+  "Yeni bir yer keşfedin 🗺️",
+  "En sevdiğiniz şarkıları dinleyin 🎶",
+  "Birlikte tatlı yiyin 🍓"
+];
 
+let wheelRotation = 0;
+let wheelBusy = false;
+
+document.getElementById("spinDateWheel").addEventListener("click", () => {
+  if (wheelBusy) return;
+
+  wheelBusy = true;
+
+  const button = document.getElementById("spinDateWheel");
+  const wheel = document.getElementById("dateWheel");
+  const result = document.getElementById("dateWheelResult");
+
+  button.disabled = true;
+  result.textContent = "Çark dönüyor… 💞";
+
+  const choice = Math.floor(Math.random() * dateIdeas.length);
+  const extraRotation = 1440 + Math.random() * 720;
+
+  wheelRotation += extraRotation;
+  wheel.style.transform = `rotate(${wheelRotation}deg)`;
+
+  setTimeout(() => {
+    result.textContent = "Bugünün planı: " + dateIdeas[choice];
+    button.disabled = false;
+    wheelBusy = false;
+  }, 3050);
+});
 updateProgress();
 </script>
 
