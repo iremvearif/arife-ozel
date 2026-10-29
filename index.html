@@ -553,35 +553,45 @@ footer {
 .menu-toast {
   position: fixed;
   left: 50%;
-  bottom: 24px;
-  z-index: 1005;
-  width: max-content;
-  max-width: calc(100vw - 32px);
-  padding: 13px 18px;
-  border: 1px solid #ead2d9;
-  border-radius: 12px;
-  background: #fcf5f2;
-  color: #785364;
-  font: 13px/1.6 Arial, sans-serif;
+  top: 50%;
+  transform: translate(-50%, -45%) scale(0.96);
+  width: min(86vw, 390px);
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: 30px 24px;
+  background: #fff7f8;
+  color: #674752;
+  border: 1px solid #e8cbd3;
+  border-radius: 22px;
+  box-shadow: 0 12px 40px rgba(90, 45, 60, 0.20);
   text-align: center;
-  box-shadow: 0 5px 20px #65434c20;
+  font-family: Georgia, serif;
+  font-size: 21px;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+  z-index: 1005;
   opacity: 0;
   visibility: hidden;
-  transform: translate(-50%, 10px);
-  transition: opacity .2s, transform .2s, visibility .2s;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease,
+              visibility 0.3s ease;
 }
 
 .menu-toast.is-visible {
   opacity: 1;
   visibility: visible;
-  transform: translate(-50%, 0);
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
 }
 
-@media (max-width: 520px) {
-  .menu-toggle {
-    top: 12px;
-    left: 12px;
+@media (max-width: 480px) {
+  .menu-toast {
+    width: 88vw;
+    padding: 26px 20px;
+    font-size: 19px;
+    line-height: 1.6;
   }
+}
 
   .side-menu {
     padding: 78px 20px 24px;
@@ -829,7 +839,7 @@ Seni seviyorum. ♡</div>
 </main>
 
 <script>
-const menuToggle = document.getElementById("menuToggle");
+const menuToggle = document.getElementById("menuToggle"); 
 const sideMenu = document.getElementById("sideMenu");
 const menuOverlay = document.getElementById("menuOverlay");
 const menuToast = document.getElementById("menuToast");
@@ -868,7 +878,7 @@ menuToast.classList.add("is-visible");
 clearTimeout(menuToastTimer);
 menuToastTimer = setTimeout(() => {
 menuToast.classList.remove("is-visible");
-}, 2800);
+}, 7000);
 }
 
 menuToggle.addEventListener("click", () => {
