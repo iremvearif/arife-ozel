@@ -1013,6 +1013,8 @@ document.querySelectorAll(".drawer-link").forEach(button => {
     const note = button.dataset.menuNote;
     const isSurprise = button.textContent.includes("Bugünün sürprizi");
 
+    if (button.id === "gamesMenuButton") return;
+
     setMenuOpen(false);
 
     if (targetId) {
