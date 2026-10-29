@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>İrem'i Ne Kadar Tanıyorsun? ♡</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;min-height:100vh;padding:24px 15px;
+ display:flex;align-items:center;justify-content:center;
+ background:#eadde0;color:#49353e;
+ font-family:Georgia,serif
+}
+.card{
+ width:100%;max-width:520px;background:#fcf5f2;
+ padding:28px 22px;border-radius:24px;
+ box-shadow:0 10px 35px #69414b20;text-align:center
+}
+h1{font-weight:normal;font-size:clamp(25px,6vw,34px)}
+.subtitle{color:#966478;line-height:1.6}
+.progress{margin:22px 0 12px;color:#b45176;font-size:14px}
+#question{font-size:21px;line-height:1.5;min-height:75px}
+#answers{display:grid;gap:10px;margin-top:20px}
+button{
+ font:inherit;cursor:pointer;border:0;border-radius:14px;
+ padding:14px;background:#f4dce5;color:#633747;
+ transition:.2s
+}
+button:hover{background:#edc3d2}
+button:disabled{cursor:default;opacity:.85}
+button.correct{background:#d5ead9;color:#285b39}
+button.wrong{background:#f3c8ca;color:#842f3a}
+#feedback{min-height:45px;line-height:1.5;margin-top:16px}
+.mainbtn{background:#d96f93;color:white;margin-top:12px}
+.mainbtn:hover{background:#c45c80}
+.hidden{display:none}
+</style>
+</head>
+<body>
+<main class="card">
+ <div>🌷 İREM & ARİF 🌷</div>
+ <h1>İrem'i Ne Kadar Tanıyorsun? ♡</h1>
+ <p class="subtitle">Yakışıklım, bakalım sevgilini ne kadar iyi tanıyorsun? 🤭</p>
+ <div class="progress" id="progress">Hazır mısın? 💗</div>
+ <h2 id="question">Test başlamak üzere...</h2>
+ <div id="answers"></div>
+ <p id="feedback"></p>
+ <button class="mainbtn" id="start">Teste başla 💌</button>
+ <button class="mainbtn hidden" id="next">Sonraki soru →</button>
+ <button class="mainbtn hidden" id="again">Bir daha oyna ♡</button>
+</main>
+
+<script>
+const questionBank = [
+{
+q:"İrem üzüldüğünde en çok neye ihtiyaç duyar?",
+a:["Hemen çözüm önerileri verilmesine","Empati kurulup anlaşıldığını hissetmeye","Konunun değiştirilmesine","Yalnız bırakılmaya"],
+c:1
+},
+{
+q:"İrem'in canı sıkkınken onunla nasıl konuşulması hoşuna gider?",
+a:["Ciddi ve mesafeli konuşulması","Onunla tartışılması","Şefkatli, tatlı ve sevecen konuşulması","Sorunun önemsiz olduğunun söylenmesi"],
+c:2
+},
+{
+q:"İrem birine kırıldığında genellikle ne yapar?",
+a:["Hiç etkilenmemiş gibi davranır","Davranışlarıyla belli eder ama sözleriyle saklamaya çalışır","Hemen ilişkiyi bitirir","Kırıldığını herkese anlatır"],
+c:1
+},
+{
+q:"İrem kendini değersiz hissettiğinde ne onu daha çok rahatlatır?",
+a:["Konunun görmezden gelinmesi","Başkalarıyla kıyaslanması","Sadece 'takma kafana' denmesi","Değerli olduğunun söylenmesi ve nedenlerinin açıklanması"],
+c:3
+},
+{
+q:"İrem'in kötü geçen bir günün ardından en çok hoşuna gidecek şey hangisidir?",
+a:["Birlikte komik şeyler konuşup güldürülmek","Bütün gün sorgulanmak","Tek başına bırakılmak","Hatalarının sıralanması"],
+c:0
+},
+{
+q:"İrem üzüldüğünde hangisi ona daha iyi gelir?",
+a:["Hemen yalnız kalmak","Konunun kapatılması","Sevdiği kişinin yanında olması","Duygularının önemsenmemesi"],
+c:2
+},
+{
+q:"İrem ağladığında karşısındaki kişiden ne bekler?",
+a:["'Ağlama artık' deyip konuyu kapatmasını","Güzel sözlerle onu mutlu etmeye çalışmasını","Neden ağladığını sorgulamasını","Duygularını küçümsemesini"],
+c:1
+},
+{
+q:"İrem kendine güvenemediğinde Arif nasıl davranırsa kendini daha iyi hisseder?",
+a:["Başkalarıyla kıyaslarsa","Konuyu değiştirirse","Tek başına halletmesini söylerse","Ona güvendiğini hissettirip başarılarını hatırlatırsa"],
+c:3
+},
+{
+q:"İrem çok mutlu olduğunda bunu genellikle nasıl belli eder?",
+a:["Sessizleşerek","Sadece gülümseyerek","Sürekli gülüp çok heyecanlanarak","Duygularını hiç göstermeyerek"],
+c:2
+},
+{
+q:"İrem'i en kolay duygulandıran konulardan biri hangisidir?",
+a:["Ailesini ve sevdiklerini bir gün kaybetme düşüncesi","Alışveriş yapmak","Hava durumunun değişmesi","Günlük planların küçük ayrıntıları"],
+c:0
+}
+];
+
+let questions=[], index=0, score=0, locked=false;
+
+const questionEl=document.getElementById("question");
+const answersEl=document.getElementById("answers");
+const progressEl=document.getElementById("progress");
+const feedbackEl=document.getElementById("feedback");
+const startBtn=document.getElementById("start");
+const nextBtn=document.getElementById("next");
+const againBtn=document.getElementById("again");
+
+function startQuiz(){
+ questions=[...questionBank].sort(()=>Math.random()-0.5).slice(0,10);
+ index=0;
+ score=0;
+ startBtn.classList.add("hidden");
+ againBtn.classList.add("hidden");
+ showQuestion();
+}
+
+function showQuestion(){
+ locked=false;
+ nextBtn.classList.add("hidden");
+ feedbackEl.textContent="";
+ progressEl.textContent=`SORU ${index+1} / ${questions.length}  ·  PUAN: ${score}`;
+ const q=questions[index];
+ questionEl.textContent=q.q;
+ answersEl.innerHTML="";
+ q.a.forEach((answer,i)=>{
+  const btn=document.createElement("button");
+  btn.textContent=answer;
+  btn.addEventListener("click",()=>chooseAnswer(i,btn));
+  answersEl.appendChild(btn);
+ });
+}
+
+function chooseAnswer(choice,btn){
+ if(locked)return;
+ locked=true;
+ const q=questions[index];
+ const buttons=[...answersEl.querySelectorAll("button")];
+ buttons.forEach(b=>b.disabled=true);
+
+ if(choice===q.c){
+  score++;
+  btn.classList.add("correct");
+  feedbackEl.textContent="Doğru cevap! İrem'i iyi tanıyorsun. 💗";
+ }else{
+  btn.classList.add("wrong");
+  buttons[q.c].classList.add("correct");
+  feedbackEl.textContent="Bu sefer olmadı yakışıklım. Doğru cevabı unutma. ♡";
+ }
+ progressEl.textContent=`SORU ${index+1} / ${questions.length}  ·  PUAN: ${score}`;
+ nextBtn.textContent=index===questions.length-1?"Sonucunu gör 💌":"Sonraki soru →";
+ nextBtn.classList.remove("hidden");
+}
+
+function showResult(){
+ progressEl.textContent="TEST TAMAMLANDI ♡";
+ questionEl.textContent=`${questions.length} soruda ${score} doğru!`;
+ answersEl.innerHTML="";
+ feedbackEl.textContent=
+ score===10?"İrem'i avucunun içi gibi tanıyorsun! 🥹💗":
+ score>=7?"Gayet iyi yakışıklım! İrem'i biraz daha keşfet. 💕":
+ score>=4?"Fena değil ama İrem hakkında öğreneceklerin var. 🌷":
+ "İrem'le daha çok sohbet etme zamanı! 💌";
+ nextBtn.classList.add("hidden");
+ againBtn.classList.remove("hidden");
+}
+
+nextBtn.addEventListener("click",()=>{
+ index++;
+ if(index<questions.length)showQuestion();
+ else showResult();
+});
+
+startBtn.addEventListener("click",startQuiz);
+againBtn.addEventListener("click",startQuiz);
+</script>
+</body>
+</html>
