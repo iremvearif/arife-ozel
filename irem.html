@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bizim Hikâyemiz ♡</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #eadde0;
+  color: #44353c;
+  font-family: Georgia, serif;
+}
+
+.page {
+  max-width: 900px;
+  margin: auto;
+  min-height: 100vh;
+  padding: 20px 18px;
+  background: #fcf5f2;
+}
+
+header {
+  text-align: center;
+  font: 10px Arial, sans-serif;
+  letter-spacing: 3px;
+  padding: 16px 0 22px;
+  border-bottom: 1px solid #ead2d9;
+}
+
+.intro {
+  text-align: center;
+  padding: 28px 0 18px;
+}
+
+.intro small, .eyebrow {
+  font: 10px Arial, sans-serif;
+  letter-spacing: 2px;
+  color: #a56f80;
+}
+
+.intro h1 {
+  font-size: clamp(32px, 7vw, 52px);
+  font-weight: normal;
+  line-height: 1.08;
+  margin: 12px 0;
+}
+
+.intro p, .description {
+  font: 13px/1.8 Arial, sans-serif;
+  color: #8e7b80;
+}
+
+/* Pinterest moodboard kolajı */
+.collage {
+  position: relative;
+  height: 620px;
+  margin: 8px -4px 30px;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 15% 15%, #f9e9ec 0, transparent 45%),
+    radial-gradient(ellipse at 85% 85%, #ead0d8 0, transparent 48%),
+    #f4e7e5;
+  border-radius: 3px;
+}
+
+.collage-photo {
+  position: absolute;
+  padding: 6px;
+  background: #fffaf7;
+  box-shadow: 0 7px 22px #65434c24;
+  overflow: hidden;
+}
+
+.collage-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.p1 {
+  left: 3%;
+  top: 4%;
+  width: 41%;
+  height: 205px;
+  transform: rotate(-5deg);
+  z-index: 2;
+}
+
+.p2 {
+  right: 3%;
+  top: 3%;
+  width: 40%;
+  height: 195px;
+  transform: rotate(4deg);
+  z-index: 2;
+}
+
+.p3 {
+  left: 4%;
+  bottom: 3%;
+  width: 39%;
+  height: 200px;
+  transform: rotate(4deg);
+  z-index: 2;
+}
+
+.p4 {
+  right: 3%;
+  bottom: 3%;
+  width: 41%;
+  height: 210px;
+  transform: rotate(-4deg);
+  z-index: 2;
+}
+
+.center-note {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-2deg);
+  width: 43%;
+  max-width: 300px;
+  padding: 25px 12px;
+  text-align: center;
+  color: #7f5362;
+  background:
+    linear-gradient(#fffaf8eF, #fffaf8eF),
+    repeating-linear-gradient(
+      0deg,
+      #e8cfd5 0px,
+      #e8cfd5 1px,
+      transparent 1px,
+      transparent 24px
+    );
+  border: 1px solid #eddae0;
+  box-shadow: 0 8px 25px #65434c24;
+}
+
+.center-note .tiny {
+  font: 9px Arial, sans-serif;
+  letter-spacing: 2px;
+  color: #b17a8b;
+}
+
+.center-note h2 {
+  font-size: clamp(20px, 4.8vw, 30px);
+  font-weight: normal;
+  line-height: 1.25;
+  margin: 16px 0 12px;
+}
+
+.center-note p {
+  font: 11px/1.8 Arial, sans-serif;
+  margin: 0;
+}
+
+.flower {
+  position: absolute;
+  z-index: 6;
+  color: #fffdfb;
+  text-shadow: 0 1px 5px #b89ba4;
+  font-size: 35px;
+  pointer-events: none;
+}
+
+.flower {
+  position: absolute;
+  z-index: 6;
+  width: 76px;
+  height: 76px;
+  pointer-events: none;
+  opacity: 0.95;
+  filter: drop-shadow(0 2px 3px #b96d8a35);
+}
+
+.flower.one {
+  left: 39%;
+  top: 5%;
+  transform: rotate(-18deg);
+}
+
+.flower.two {
+  right: 35%;
+  bottom: 5%;
+  transform: rotate(22deg) scale(0.85);
+}
+
+.flower svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.section {
+  padding: 26px 0;
+  text-align: center;
+}
+
+h2 { font-weight: normal; }
+
+.letter {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 30px 20px;
+  margin: 32px 0;
+  text-align: center;
+  border: 1px solid #e8cbd4;
+  background: #fff8f5;
+}
+
+.letter::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background-image: var(--letter-photo);
+  background-size: cover;
+  background-position: center;
+  opacity: .17;
+}
+
+.letter h2 { font-size: 28px; }
+
+button, .link {
+  border: 0;
+  border-radius: 3px;
+  background: #bd8799;
+  color: white;
+  padding: 12px 18px;
+  font: 13px Arial, sans-serif;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 12px;
+}
+
+#letter {
+  display: none;
+  white-space: pre-line;
+  text-align: left;
+  font-size: 15px;
+  line-height: 2;
+  margin-top: 22px;
+}
+
+.music {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  text-align: center;
+  background: #ead8de;
+  padding: 30px 14px;
+  margin: 30px 0;
+}
+
+.music::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background-image: var(--song-photo);
+  background-size: cover;
+  background-position: center;
+  opacity: .18;
+}
+
+.music h2 { color: #785364; }
+
+.countdown {
+  margin-top: 30px;
+  padding: 30px 14px;
+  text-align: center;
+  color: #865b6b;
+  background: #f5e2e8;
+  border: 1px solid #e9c8d3;
+}
+
+.countdown .eyebrow { color: #aa7889; }
+
+.countdown h2 {
+  font-size: clamp(23px, 5vw, 34px);
+  margin: 14px 0;
+}
+
+.timer {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  max-width: 550px;
+  margin: 22px auto;
+}
+
+.time-box {
+  min-width: 0;
+  padding: 14px 3px;
+  background: #fff8fa;
+  border: 1px solid #edced8;
+  border-radius: 5px;
+}
+
+.time-box strong {
+  display: block;
+  font: clamp(20px, 5vw, 32px) Georgia, serif;
+  color: #985f75;
+}
+
+.time-box span {
+  display: block;
+  margin-top: 7px;
+  font: 9px Arial, sans-serif;
+  letter-spacing: 1px;
+  color: #ad8291;
+}
+
+.countdown-note {
+  font: 12px/1.8 Arial, sans-serif;
+  color: #a17887;
+}
+
+footer {
+  border-top: 1px solid #ead2d9;
+  text-align: center;
+  padding: 25px 0 12px;
+  font: 12px/2 Arial, sans-serif;
+  color: #987f87;
+}
+
+@media (max-width: 520px) {
+  .page { padding: 14px 12px; }
+  .collage { height: 510px; }
+  .p1 { height: 170px; }
+  .p2 { height: 160px; }
+  .p3 { height: 165px; }
+  .p4 { height: 175px; }
+  .center-note {
+    width: 48%;
+    padding: 22px 7px;
+  }
+  .flower { font-size: 27px; }
+  .timer { gap: 5px; }
+  .time-box { padding: 12px 2px; }
+  .time-box span { font-size: 8px; letter-spacing: 0; }
+}
+.song-box {
+  max-width: 420px;
+  margin: 24px auto;
+  padding: 0 16px;
+  text-align: left;
+}
+
+.song {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 17px 14px;
+  margin: 10px 0;
+  color: #302e30;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.58);
+  border: 1px solid rgba(150, 110, 120, 0.16);
+  border-radius: 14px;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.song:active {
+  transform: scale(0.98);
+  background: #f5e3e8;
+}
+
+.song-number {
+  color: #b7798d;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.song-info {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.song-info strong {
+  font-size: 15px;
+  font-weight: normal;
+}
+
+.song-info small {
+  color: #8b777b;
+  font-size: 12px;
+}
+
+.song-play {
+  color: #b7798d;
+  font-size: 20px;
+}
+
+@media (max-width: 480px) {
+  .song-box {
+    padding: 0 12px;
+  }
+
+  .song {
+    padding: 15px 12px;
+  }
+}
+.menu-toggle {
+  position: fixed;
+  top: 18px;
+  left: 18px;
+  z-index: 1002;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  padding: 10px;
+  margin: 0;
+  border: 1px solid #ead2d9;
+  border-radius: 50%;
+  background: #fcf5f2;
+  box-shadow: 0 3px 14px #65434c18;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 19px;
+  height: 2px;
+  border-radius: 2px;
+  background: #986779;
+  transition: transform .25s, opacity .25s;
+}
+
+.menu-toggle.is-open span:first-child {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.is-open span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.is-open span:last-child {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Arka plan perdesi */
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: #35232d70;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .3s, visibility .3s;
+}
+
+.menu-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Soldan açılan panel */
+.side-menu {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1001;
+  width: min(340px, 86vw);
+  padding: 85px 24px 30px;
+  overflow-y: auto;
+  background: #fcf5f2;
+  border-right: 1px solid #ead2d9;
+  box-shadow: 8px 0 30px #65434c18;
+  transform: translateX(-105%);
+  transition: transform .32s ease;
+  visibility: hidden;
+}
+
+.side-menu.is-open {
+  transform: translateX(0);
+  visibility: visible;
+}
+
+.menu-heading {
+  padding: 8px 0 24px;
+  border-bottom: 1px solid #ead2d9;
+  margin-bottom: 20px;
+}
+
+.menu-heading small {
+  font: 10px Arial, sans-serif;
+  letter-spacing: 2px;
+  color: #a56f80;
+}
+
+.menu-heading h2 {
+  margin: 10px 0 6px;
+  font-size: 27px;
+  font-weight: normal;
+  color: #785364;
+}
+
+.menu-heading p {
+  margin: 0;
+  font: 12px/1.7 Arial, sans-serif;
+  color: #987f87;
+}
+
+.menu-label {
+  margin: 20px 0 10px;
+  font: 10px Arial, sans-serif;
+  letter-spacing: 2px;
+  color: #ad8291;
+}
+
+.drawer-link {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  width: 100%;
+  margin: 7px 0;
+  padding: 14px 12px;
+  text-align: left;
+  border: 1px solid #efdee2;
+  border-radius: 10px;
+  background: #fffaf8;
+  color: #654956;
+  font: 14px Arial, sans-serif;
+  transition: background .2s, transform .2s;
+}
+
+.drawer-link:active {
+  background: #f5e3e8;
+  transform: scale(.98);
+}
+
+.drawer-icon {
+  width: 30px;
+  text-align: center;
+  font-size: 19px;
+}
+
+.menu-toast {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -45%) scale(0.96);
+  width: min(86vw, 390px);
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: 30px 24px;
+  background: #fff7f8;
+  color: #674752;
+  border: 1px solid #e8cbd3;
+  border-radius: 22px;
+  box-shadow: 0 12px 40px rgba(90, 45, 60, 0.20);
+  text-align: center;
+  font-family: Georgia, serif;
+  font-size: 21px;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+  z-index: 1005;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease,
+              visibility 0.3s ease;
+}
+
+.menu-toast.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+@media (max-width: 480px) {
+  .menu-toast {
+    width: 88vw;
+    padding: 26px 20px;
+    font-size: 19px;
+    line-height: 1.6;
+  }
+}
+
+  .side-menu {
+    padding: 78px 20px 24px;
+  }
+}
+/* İREM'İN DÜNYASI */
+.irem-world {
+  padding: 38px 0;
+  text-align: center;
+  scroll-margin-top: 24px;
+}
+
+.irem-world h2 {
+  margin: 10px 0;
+  font-size: clamp(25px, 5vw, 34px);
+  font-weight: normal;
+}
+
+.irem-intro {
+  max-width: 540px;
+  margin: 0 auto 25px;
+  padding: 0 12px;
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+.irem-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  text-align: left;
+}
+
+.irem-card {
+  appearance: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 9px;
+  width: 100%;
+  min-width: 0;
+  padding: 20px 17px;
+  border: 1px solid rgba(145, 103, 119, 0.18);
+  border-radius: 19px;
+  background: linear-gradient(145deg, #fffaf9, #f7e9ed);
+  color: #59414b;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 5px 16px rgba(99, 65, 78, 0.07);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.irem-card:active {
+  transform: scale(0.98);
+}
+
+.irem-card:focus-visible {
+  outline: 2px solid #b87991;
+  outline-offset: 3px;
+}
+
+.irem-card-icon {
+  font-size: 27px;
+}
+
+.irem-card strong {
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 1.5;
+}
+
+.irem-card-hint {
+  font-size: 12px;
+  opacity: 0.72;
+  line-height: 1.5;
+}
+
+.irem-card-content {
+  display: none;
+  width: 100%;
+  padding-top: 8px;
+  border-top: 1px solid rgba(145, 103, 119, 0.18);
+  font-size: 13px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.irem-card-content p {
+  margin: 8px 0;
+}
+
+.irem-card.is-open {
+  box-shadow: 0 8px 22px rgba(99, 65, 78, 0.12);
+}
+
+.irem-card.is-open .irem-card-content {
+  display: block;
+}
+
+.irem-card.is-open .irem-card-hint {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .irem-cards {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .irem-card {
+    padding: 18px;
+  }
+}
+/* Yalnızca İrem'in Dünyası sayfasında */
+body.irem-page main > *:not(#irem-dunyasi) {
+  display: none !important;
+}
+
+body.irem-page #irem-dunyasi {
+  display: block !important;
+}
+
+body.irem-page .irem-world {
+  min-height: 75vh;
+}
+</style>
+</head>
+
+<body class="irem-page">
+<button class="menu-toggle" id="menuToggle"
+  type="button" aria-label="Menüyü aç"
+  aria-expanded="false" aria-controls="sideMenu">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<nav class="side-menu" id="sideMenu"
+  aria-label="Bizim küçük dünyamız" aria-hidden="true">
+
+  <div class="menu-heading">
+    <small>İREM &amp; ARİF ♡</small>
+    <h2>Bizim küçük<br>dünyamız.</h2>
+    <p>Kaybolursan burada buluşalım.</p>
+  </div>
+
+  <div class="menu-label">KEŞFET</div>
+
+  <button class="drawer-link" type="button"
+    data-menu-note="Birlikte yapmak istediğimiz aktiviteleri birazdan burada toplayacağız. ♡">
+    <span class="drawer-icon">🎟️</span>
+    <span>Birlikte yapalım</span>
+  </button>
+
+  <button class="drawer-link" type="button" data-menu-target="irem-dunyasi">
+  <span class="drawer-icon">🌷</span>
+  <span>İrem'in dünyası</span>
+</button>
+
+  <button class="drawer-link" type="button"
+    data-menu-note="Bugünün romantik veya komik sürprizi yakında burada. 💌">
+    <span class="drawer-icon">💌</span>
+    <span>Bugünün sürprizi</span>
+  </button>
+
+  <button class="drawer-link" type="button"
+    data-menu-note="Üç oyunlu oyun köşemizi en son birlikte hazırlayacağız. 🎮">
+    <span class="drawer-icon">🎮</span>
+    <span>Oyunlar</span>
+  </button>
+
+  <div class="menu-label">BİZİM HİKÂYEMİZ</div>
+
+  <button class="drawer-link" type="button"
+    data-menu-target="collage">
+    <span class="drawer-icon">📷</span>
+    <span>Fotoğraflarımız</span>
+  </button>
+
+  <button class="drawer-link" type="button"
+    data-menu-target="letterSection">
+    <span class="drawer-icon">♡</span>
+    <span>Sana mektubum</span>
+  </button>
+
+  <button class="drawer-link" type="button"
+    data-menu-target="countdown">
+    <span class="drawer-icon">🗓️</span>
+    <span>Geri sayımımız</span>
+  </button>
+</nav>
+
+<div class="menu-toast" id="menuToast"
+  role="status" aria-live="polite"></div>
+<main class="page">
+
+<header>OUR LITTLE WORLD ♡</header>
+
+<section class="intro">
+  <small>JUST YOU &amp; ME</small>
+  <h1>Bizim küçük<br>hikâyemiz.</h1>
+  <p>Bir sürü anı. Bir sürü his.<br>İyi ki biz.</p>
+</section>
+
+<section class="collage" id="collage">
+  <div class="collage-photo p1">
+    <img data-photo="IMG-20260425-WA0016.jpg" alt="Birlikte güzel bir anımız">
+  </div>
+  <div class="collage-photo p2">
+    <img data-photo="Screenshot_20261018_150023_Gallery.jpg" alt="Birlikte güzel bir anımız">
+  </div>
+  <div class="collage-photo p3">
+    <img data-photo="Screenshot_20261018_151936_Gallery.jpg" alt="Birlikte güzel bir anımız">
+  </div>
+  <div class="collage-photo p4">
+    <img data-photo="IMG-20260415-WA0024.jpg" alt="Birlikte güzel bir anımız">
+  </div>
+
+  <div class="center-note">
+    <div class="tiny">OUR LITTLE MEMORIES</div>
+    <h2>2 Kasım<br>2026</h2>
+    <p>Sevgilim, seni çok seviyorum. ♡</p>
+  </div>
+
+ <span class="flower one" aria-hidden="true">
+  <svg viewBox="0 0 100 100" fill="none">
+    <g fill="#f4b6cc" stroke="#d77d9e" stroke-width="1.5">
+      <ellipse cx="50" cy="29" rx="11" ry="27" transform="rotate(0 50 50)"/>
+      <ellipse cx="50" cy="29" rx="11" ry="27" transform="rotate(72 50 50)"/>
+      <ellipse cx="50" cy="29" rx="11" ry="27" transform="rotate(144 50 50)"/>
+      <ellipse cx="50" cy="29" rx="11" ry="27" transform="rotate(216 50 50)"/>
+      <ellipse cx="50" cy="29" rx="11" ry="27" transform="rotate(288 50 50)"/>
+    </g>
+    <circle cx="50" cy="50" r="5" fill="#d69a45"/>
+    <g stroke="#c58b3d" stroke-width="1.5" stroke-linecap="round">
+      <path d="M50 50 L38 35 M50 50 L62 35 M50 50 L35 48 M50 50 L65 48"/>
+    </g>
+  </svg>
+</span>
+<span class="flower two" aria-hidden="true">
+  <svg viewBox="0 0 100 100" fill="none">
+    <g fill="#f7c4d6" stroke="#d77d9e" stroke-width="1.5">
+      <ellipse cx="50" cy="29" rx="11" ry="27"/>
+      <ellipse cx="50" cy="29" rx="11" ry="27" transform="rotate(72 50 50)"/>
+      <ellipse cx="50" cy="29" rx="11" ry="27" transform="rotate(144 50 50)"/>
+      <ellipse cx="50" cy="29" rx="11" ry="27" transform="rotate(216 50 50)"/>
+      <ellipse cx="50" cy="29" rx="11" ry="27" transform="rotate(288 50 50)"/>
+    </g>
+    <circle cx="50" cy="50" r="5" fill="#d69a45"/>
+    <g stroke="#c58b3d" stroke-width="1.5" stroke-linecap="round">
+      <path d="M50 50 L38 35 M50 50 L62 35 M50 50 L35 48 M50 50 L65 48"/>
+    </g>
+  </svg>
+</span>
+</section>
+
+<section class="letter" id="letterSection">
+  <div class="eyebrow">JUST FOR YOU</div>
+  <h2>Sana küçük bir mektup.</h2>
+  <p class="description">Açmadan gitme.</p>
+  <button id="letterButton" onclick="toggleLetter()">Mektubu aç ♡</button>
+
+  <div id="letter">Yakışıklım,
+
+Bu siteyi senin için hazırlamak istedim.
+Çünkü birlikte yaşadığımız güzel şeyleri
+bir yerde toplamak istiyorum.
+
+Her anımız mükemmel olmak zorunda değil.
+Bazen en sıradan günler bile seninle
+benim için çok özel oluyor.
+
+Bu sayfa, hikâyemizin küçük bir hatırası olsun.
+Bir gün açıp baktığında yüzünde bir gülümseme
+oluşturabilsin istiyorum.
+
+İyi ki hayatımdasın sevgilim.
+İyi ki biz olmuşuz.
+
+Seni seviyorum. ♡</div>
+</section>
+
+<section class="music">
+  <div class="eyebrow">OUR SONGS ♫</div>
+  <h2>Bizim şarkılarımız.</h2>
+  <p class="description">Her birinde senden bir parça var. ♡</p>
+
+  <div class="song-box">
+    <a class="song" href="https://open.spotify.com/search/Müslüm%20Gürses%20Tutamıyorum%20Zamanı" target="_blank" rel="noopener">
+      <span class="song-number">01</span>
+      <span class="song-info">
+        <strong>Tutamıyorum Zamanı</strong>
+        <small>Müslüm Gürses</small>
+      </span>
+      <span class="song-play">↗</span>
+    </a>
+
+    <a class="song" href="https://open.spotify.com/search/Gökhan%20Türkmen%20Aşk" target="_blank" rel="noopener">
+      <span class="song-number">02</span>
+      <span class="song-info">
+        <strong>Aşk</strong>
+        <small>Gökhan Türkmen</small>
+      </span>
+      <span class="song-play">↗</span>
+    </a>
+
+    <a class="song" href="https://open.spotify.com/search/Atilla%20Kaya%20Özledim%20Seni" target="_blank" rel="noopener">
+      <span class="song-number">03</span>
+      <span class="song-info">
+        <strong>Özledim Seni</strong>
+        <small>Atilla Kaya</small>
+      </span>
+      <span class="song-play">↗</span>
+    </a>
+
+    <a class="song" href="https://open.spotify.com/search/Atilla%20Kaya%20Liselim" target="_blank" rel="noopener">
+      <span class="song-number">04</span>
+      <span class="song-info">
+        <strong>Liselim</strong>
+        <small>Atilla Kaya</small>
+      </span>
+      <span class="song-play">↗</span>
+    </a>
+  </div>
+</section>
+<section class="irem-world" id="irem-dunyasi">
+  <div class="eyebrow">A LITTLE GUIDE TO İREM ♡</div>
+  <h2>İrem'in Dünyası 🎀</h2>
+  <p class="irem-intro">
+    Yakışıklım, sevgilini daha iyi tanımaya hoş geldin.
+    Yanlış cevapların ufak sonuçları olabilir... 💅🏻
+  </p>
+<p style="margin: 0 0 24px;">
+  <a href="index.html" style="color: #a56f80; text-decoration: none;">
+    ← Ana sayfaya dön ♡
+  </a>
+</p>
+
+  <div class="irem-cards">
+    <button class="irem-card" type="button" aria-expanded="false">
+      <span class="irem-card-icon">🎀</span>
+      <strong>İrem kullanım kılavuzu</strong>
+      <span class="irem-card-hint">Kullanırken dikkat ediniz...</span>
+      <div class="irem-card-content">
+        <p>♡ İrem üzgünse hemen çözüm üretmek zorunda değilsin, bazen sadece sarılman yeterli.</p>
+        <p>♡ “Bir şeyim yok” cevabından sonra biraz sevgi göstermek hayat kurtarabilir.</p>
+        <p>♡ İrem'in gönlünü almak için yakışıklı sevgili kontenjanını kullanabilirsin.</p>
+        <p>♡ Bol ilgi, bol sevgi, mümkünse sınırsız sarılma. Yan etkisi: İrem sana daha çok bağlanabilir.</p>
+      </div>
+    </button>
+
+    <button class="irem-card" type="button" aria-expanded="false">
+      <span class="irem-card-icon">💅🏻</span>
+      <strong>Saçma ama önemli kurallar</strong>
+      <span class="irem-card-hint">Anayasa niteliğindedir.</span>
+      <div class="irem-card-content">
+        <p>♡ “Güzel miyim?” sorusu bir bilgi yarışması değildir. Cevap bellidir.</p>
+        <p>♡ Sevgilinin durduk yere attığı fotoğraflara iltifat etmek zorunludur.</p>
+        <p>♡ İrem'in canı bir şey istediyse konu artık ulusal gündemdir.</p>
+        <p>♡ Sarılma talebi reddedilemez. İtirazlar sevgililer mahkemesinde değerlendirilir.</p>
+      </div>
+    </button>
+
+    <button class="irem-card" type="button" aria-expanded="false">
+      <span class="irem-card-icon">🤫</span>
+      <strong>Arif'in gizli dosyası</strong>
+      <span class="irem-card-hint">Gizlilik seviyesi: sevgili</span>
+      <div class="irem-card-content">
+        <p>♡ İrem bazen sadece aklına geldiğin için mesaj atar. Cevap vermen onu mutlu eder.</p>
+        <p>♡ Küçücük bir düşünceli davranışın bile onun için kocaman anlamı olabilir.</p>
+        <p>♡ Bazen senden istediği tek şey, yanında olduğunu hissettirmendir.</p>
+        <p>♡ Bu dosyayı okuduysan sevgiline bir öpücük borçlandın. Kurallar böyle, yapacak bir şey yok. 😌</p>
+      </div>
+    </button>
+
+    <button class="irem-card" type="button" aria-expanded="false">
+      <span class="irem-card-icon">🌷</span>
+      <strong>Bugünkü İrem raporu</strong>
+      <span class="irem-card-hint">Günün resmî açıklaması</span>
+      <div class="irem-card-content">
+        <p>♡ Günlük rapor: Sevgili özleme seviyesi ölçülemeyecek kadar yüksek.</p>
+        <p>♡ İlgi beklentisi: Biraz değil, bir tık daha fazla.</p>
+        <p>♡ Yakışıklı sevgiliye önerilen görev: İrem'e güzel bir mesaj atmak ve onu gülümsetmek.</p>
+        <p><em>Not: Bu rapor şimdilik eğlence amaçlıdır. Günlük ruh hâlini otomatik olarak değiştirmez.</em></p>
+      </div>
+    </button>
+  </div>
+</section>
+
+<section class="countdown" id="countdown">
+  <div class="eyebrow">02 · 11 · 2027</div>
+  <h2>İkinci yılımıza ♡</h2>
+  <p class="countdown-note">Birlikte geçireceğimiz nice yıllara.</p>
+
+  <div class="timer">
+    <div class="time-box">
+      <strong id="days">000</strong>
+      <span>GÜN</span>
+    </div>
+    <div class="time-box">
+      <strong id="hours">00</strong>
+      <span>SAAT</span>
+    </div>
+    <div class="time-box">
+      <strong id="minutes">00</strong>
+      <span>DAKİKA</span>
+    </div>
+    <div class="time-box">
+      <strong id="seconds">00</strong>
+      <span>SANİYE</span>
+    </div>
+  </div>
+
+  <p class="countdown-note" id="countdownMessage">
+    Her saniye, yeni bir anıya daha yakın…
+  </p>
+</section>
+
+<footer>
+  İyi ki sen. İyi ki biz. ♡<br>
+  Hikâyemiz devam ediyor...
+</footer>
+
+</main>
+
+<script>
+const menuToggle = document.getElementById("menuToggle"); 
+const sideMenu = document.getElementById("sideMenu");
+const menuOverlay = document.getElementById("menuOverlay");
+const menuToast = document.getElementById("menuToast");
+
+let menuToastTimer;
+
+  const surpriseNotes = [
+  "Bugün sevgiline haber vermeyi unuttun sankiiiii",
+  "Seni şimdiye kadar ki bütün zamanlardan daha fazla seviyorum aşkım",
+  "Yorulduğunu biliyorum sevgilim ama senin ne kadar güçlü olduğunu biliyorum benn.",
+  "Biricik sevgilinin aklından bugünde çıkmamayı başardın.",
+  "Bir tavuklu pilav yap, yiyelim yyyaaaaa",
+  "Bugün biraz ilgisiz bırakılmış olabilir miyim acabaaa, ne dersin",
+  "Canının bir tatlı istediğini söyledi kuşlar. Sevgiline hemen haber ver, o sana elleriyle seve seve istediğini yaparrr.",
+  "İremin bugün yine senden başka bir şey düşünemedi bu yüzden sana biraz kızgın.",
+  "Artık güzelin olmadığımdan şüphelenmeye başlıyorum ama. Belki bugün bana bunu hatırlatırsın yakışıklım.",
+  "Hayatımın geri kalanını sensiz hayal bile edemiyorum aşkım.",
+  "Her gün bu kadar yakışıklı olma lütfen, kıskanıyorum.",
+  "Bugün nasılmış benim sevgilimmmm, belki anlatmak istediğin canını sıkan bir şey vardır ama biliyorsun ki her an bana her şeyi anlatabilirsin bir tanemmm.",
+  "Sana ne zaman tuzlu kahve ikram ediyorum, artık belirlemesek miiii"
+];
+
+function setMenuOpen(open) {
+menuToggle.classList.toggle("is-open", open);
+sideMenu.classList.toggle("is-open", open);
+menuOverlay.classList.toggle("is-open", open);
+menuToggle.setAttribute("aria-expanded", String(open));
+menuToggle.setAttribute("aria-label", open ? "Menüyü kapat" : "Menüyü aç");
+sideMenu.setAttribute("aria-hidden", String(!open));
+document.body.style.overflow = open ? "hidden" : "";
+}
+
+function showMenuToast(message) {
+menuToast.textContent = message;
+menuToast.classList.add("is-visible");
+clearTimeout(menuToastTimer);
+menuToastTimer = setTimeout(() => {
+menuToast.classList.remove("is-visible");
+}, 7000);
+}
+
+menuToggle.addEventListener("click", () => {
+setMenuOpen(!sideMenu.classList.contains("is-open"));
+});
+
+menuOverlay.addEventListener("click", () => setMenuOpen(false));
+
+document.addEventListener("keydown", event => {
+if (event.key === "Escape") setMenuOpen(false);
+});
+
+document.querySelectorAll(".drawer-link").forEach(button => {
+  button.addEventListener("click", () => {
+    const targetId = button.dataset.menuTarget;
+    const note = button.dataset.menuNote;
+    const isSurprise = button.textContent.includes("Bugünün sürprizi");
+
+    setMenuOpen(false);
+
+    if (targetId) {
+      document.getElementById(targetId)?.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    } else if (isSurprise) {
+      const randomIndex = Math.floor(Math.random() * surpriseNotes.length);
+      showMenuToast(surpriseNotes[randomIndex]);
+    } else if (note) {
+      showMenuToast(note);
+    }
+  });
+});
+function toggleLetter() {
+  const message = document.getElementById("letter");
+  const button = document.getElementById("letterButton");
+  const isOpen = message.style.display === "block";
+
+  message.style.display = isOpen ? "none" : "block";
+  button.textContent = isOpen ? "Mektubu aç ♡" : "Mektubu kapat ♡";
+}
+
+async function loadChosenPhotos() {
+  const repo = "iremvearif/arife-ozel";
+
+  try {
+    const response = await fetch(
+      "https://api.github.com/repos/" + repo + "/contents"
+    );
+
+    if (!response.ok) throw new Error("Fotoğraflar yüklenemedi");
+
+    const files = await response.json();
+    const fileMap = new Map(files.map(file => [file.name, file]));
+
+    document.querySelectorAll("[data-photo]").forEach(img => {
+      const filename = img.dataset.photo;
+      const file = fileMap.get(filename);
+
+      if (file && file.download_url) {
+        img.src = file.download_url;
+      } else {
+        img.alt = "Fotoğraf bulunamadı: " + filename;
+      }
+    });
+
+    const letterPhoto = fileMap.get("IMG-20261003-WA0015.jpg");
+    if (letterPhoto && letterPhoto.download_url) {
+      document.getElementById("letterSection").style.setProperty(
+        "--letter-photo",
+        'url("' + letterPhoto.download_url + '")'
+      );
+    }
+
+    const songPhoto = fileMap.get("IMG-20260425-WA0013.jpg");
+    if (songPhoto && songPhoto.download_url) {
+      document.querySelector(".music").style.setProperty(
+        "--song-photo",
+        'url("' + songPhoto.download_url + '")'
+      );
+    }
+
+  } catch (error) {
+    console.error("Fotoğraflar yüklenemedi:", error);
+  }
+}
+
+function updateCountdown() {
+  // Türkiye saatiyle 2 Kasım 2027, 00.00
+  const target = new Date("2027-11-02T00:00:00+03:00").getTime();
+  const now = Date.now();
+  const difference = target - now;
+
+  const message = document.getElementById("countdownMessage");
+
+  if (difference <= 0) {
+    ["days", "hours", "minutes", "seconds"].forEach(id => {
+      document.getElementById(id).textContent = "00";
+    });
+    message.textContent = "İkinci yıl dönümümüz kutlu olsun sevgilim! ♡";
+    return;
+  }
+
+  const day = Math.floor(difference / 86400000);
+  const hour = Math.floor((difference % 86400000) / 3600000);
+  const minute = Math.floor((difference % 3600000) / 60000);
+  const second = Math.floor((difference % 60000) / 1000);
+
+  document.getElementById("days").textContent = String(day).padStart(3, "0");
+  document.getElementById("hours").textContent = String(hour).padStart(2, "0");
+  document.getElementById("minutes").textContent = String(minute).padStart(2, "0");
+  document.getElementById("seconds").textContent = String(second).padStart(2, "0");
+}
+
+loadChosenPhotos();
+updateCountdown();
+setInterval(updateCountdown, 1000);
+document.querySelectorAll(".irem-card").forEach(card => {
+  card.addEventListener("click", () => {
+    const isOpen = card.classList.contains("is-open");
+
+    card.classList.toggle("is-open", !isOpen);
+    card.setAttribute("aria-expanded", String(!isOpen));
+  });
+});
+</script>
+
+</body>
+</html>
