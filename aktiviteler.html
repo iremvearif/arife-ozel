@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Birlikte Yapalım ♡</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #eadde0;
+  color: #44353c;
+  font-family: Georgia, serif;
+}
+
+.page {
+  max-width: 900px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 28px 22px 50px;
+  background: #fcf5f2;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 32px;
+  color: #a56f80;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+header {
+  padding: 24px 0 28px;
+  text-align: center;
+}
+
+.eyebrow {
+  color: #a56f80;
+  font-size: 11px;
+  letter-spacing: 3px;
+}
+
+h1 {
+  margin: 15px 0 12px;
+  font-size: clamp(29px, 6vw, 42px);
+  font-weight: normal;
+}
+
+.intro {
+  max-width: 520px;
+  margin: 0 auto;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.progress-card {
+  margin: 18px 0 24px;
+  padding: 20px;
+  border: 1px solid #ead6dd;
+  border-radius: 18px;
+  background: #fffaf9;
+}
+
+.progress-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-size: 13px;
+}
+
+.progress-track {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #f0e2e6;
+}
+
+.progress-fill {
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: #c78da2;
+  transition: width 0.25s ease;
+}
+
+.task-list {
+  display: grid;
+  gap: 12px;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 17px;
+  border: 1px solid #eadde0;
+  border-radius: 15px;
+  background: #fffaf9;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1.7;
+  transition: background 0.2s ease;
+}
+
+.task input {
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+  accent-color: #b87991;
+  cursor: pointer;
+}
+
+.task.done {
+  background: #f6e9ed;
+  color: #8e7180;
+}
+
+.task.done .task-text {
+  text-decoration: line-through;
+  opacity: 0.8;
+}
+
+.ending {
+  margin: 30px 0 0;
+  color: #a56f80;
+  font-size: 14px;
+  line-height: 1.8;
+  text-align: center;
+}
+
+footer {
+  margin-top: 36px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.9;
+  color: #8e737d;
+}
+
+@media (max-width: 480px) {
+  .page {
+    padding: 22px 16px 40px;
+  }
+
+  .task {
+    padding: 15px 12px;
+  }
+}
+</style>
+</head>
+
+<body>
+<main class="page">
+
+  <a class="back-link" href="index.html">← Ana sayfaya dön ♡</a>
+
+  <header>
+    <div class="eyebrow">OUR LITTLE BUCKET LIST ♡</div>
+    <h1>Birlikte yapalım 💗</h1>
+    <p class="intro">
+      Birlikte gerçekleştireceğimiz küçük ve büyük hayallerimiz...
+      Her tamamladığımızda bir tanesini işaretleyelim. 🥹
+    </p>
+  </header>
+
+  <section class="progress-card">
+    <div class="progress-top">
+      <span>Hayallerimizin durumu ♡</span>
+      <span id="progressText">0 / 10</span>
+    </div>
+    <div
+      class="progress-track"
+      role="progressbar"
+      aria-label="Tamamlanan aktiviteler"
+      aria-valuemin="0"
+      aria-valuemax="10"
+      aria-valuenow="0"
+      id="progressBar"
+    >
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </section>
+
+  <section class="task-list" id="taskList">
+    <label class="task">
+      <input type="checkbox" data-task="0">
+      <span class="task-text">Birlikte gün batımını izlemek 🌅</span>
+    </label>
+
+    <label class="task">
+      <input type="checkbox" data-task="1">
+      <span class="task-text">Baş başa romantik bir piknik yapmak 🧺</span>
+    </label>
+
+    <label class="task">
+      <input type="checkbox" data-task="2">
+      <span class="task-text">Birlikte yeni bir şehir keşfetmek 🗺️</span>
+    </label>
+
+    <label class="task">
+      <input type="checkbox" data-task="3">
+      <span class="task-text">Birbirimize el yazısıyla mektup yazmak 💌</span>
+    </label>
+
+    <label class="task">
+      <input type="checkbox" data-task="4">
+      <span class="task-text">Birlikte gece yürüyüşüne çıkmak 🌙</span>
+    </label>
+
+    <label class="task">
+      <input type="checkbox" data-task="5">
+      <span class="task-text">Beraber en sevdiğimiz şarkıları dinlemek 🎶</span>
+    </label>
+
+    <label class="task">
+      <input type="checkbox" data-task="6">
+      <span class="task-text">Birlikte yeni bir yemek tarifi denemek 🍓</span>
+    </label>
+
+    <label class="task">
+      <input type="checkbox" data-task="7">
+      <span class="task-text">Birbirimizin fotoğraflarını çekmek 📸</span>
+    </label>
+
+    <label class="task">
+      <input type="checkbox" data-task="8">
+      <span class="task-text">Birlikte bütün gün rahat rahat takılmak 🧸</span>
+    </label>
+
+    <label class="task">
+      <input type="checkbox" data-task="9">
+      <span class="task-text">Yıllar sonra açmak için bir anı kutusu hazırlamak 🎁</span>
+    </label>
+  </section>
+
+  <p class="ending" id="endingMessage">
+    Daha yaşayacağımız çok güzel şey var... ♡
+  </p>
+
+  <footer>
+    İyi ki sen. İyi ki biz. ♡<br>
+    Hikâyemiz devam ediyor...
+  </footer>
+
+</main>
+
+<script>
+const STORAGE_KEY = "iremArifTogetherTasks";
+const checkboxes = document.querySelectorAll("[data-task]");
+const progressText = document.getElementById("progressText");
+const progressFill = document.getElementById("progressFill");
+const progressBar = document.getElementById("progressBar");
+const endingMessage = document.getElementById("endingMessage");
+
+let savedTasks = {};
+
+try {
+  savedTasks = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}") || {};
+} catch (error) {
+  savedTasks = {};
+}
+
+function updateProgress() {
+  const completed = [...checkboxes].filter(box => box.checked).length;
+  const total = checkboxes.length;
+  const percentage = total ? (completed / total) * 100 : 0;
+
+  progressText.textContent = `${completed} / ${total}`;
+  progressFill.style.width = `${percentage}%`;
+  progressBar.setAttribute("aria-valuenow", completed);
+
+  if (completed === total) {
+    endingMessage.textContent = "Bütün hayallerimize birer anı ekledik! Nice güzelliklere sevgilim. ♡";
+  } else if (completed > 0) {
+    endingMessage.textContent = "Her küçük tik, birlikte biriktirdiğimiz güzel bir anı. ♡";
+  } else {
+    endingMessage.textContent = "Daha yaşayacağımız çok güzel şey var... ♡";
+  }
+}
+
+checkboxes.forEach(box => {
+  box.checked = savedTasks[box.dataset.task] === true;
+  box.closest(".task").classList.toggle("done", box.checked);
+
+  box.addEventListener("change", () => {
+    savedTasks[box.dataset.task] = box.checked;
+
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(savedTasks));
+    } catch (error) {
+      endingMessage.textContent = "Tarayıcı kaydetmeye izin vermedi. Ayarlarını kontrol et. ♡";
+    }
+
+    box.closest(".task").classList.toggle("done", box.checked);
+    updateProgress();
+  });
+});
+
+updateProgress();
+</script>
+
+</body>
+</html>
