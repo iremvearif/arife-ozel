@@ -4,51 +4,199 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>İrem'i Ne Kadar Tanıyorsun? ♡</title>
+
 <style>
-*{box-sizing:border-box}
-body{
- margin:0;min-height:100vh;padding:24px 15px;
- display:flex;align-items:center;justify-content:center;
- background:#eadde0;color:#49353e;
- font-family:Georgia,serif
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 20px 14px;
+  min-height: 100vh;
+  background: #eadde0;
+  color: #44353c;
+  font-family: Georgia, serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.card{
- width:100%;max-width:520px;background:#fcf5f2;
- padding:28px 22px;border-radius:24px;
- box-shadow:0 10px 35px #69414b20;text-align:center
+
+.card {
+  width: 100%;
+  max-width: 600px;
+  background: #fcf5f2;
+  padding: 28px 22px;
+  border-radius: 24px;
+  box-shadow: 0 10px 35px #79546420;
 }
-h1{font-weight:normal;font-size:clamp(25px,6vw,34px)}
-.subtitle{color:#966478;line-height:1.6}
-.progress{margin:22px 0 12px;color:#b45176;font-size:14px}
-#question{font-size:21px;line-height:1.5;min-height:75px}
-#answers{display:grid;gap:10px;margin-top:20px}
-button{
- font:inherit;cursor:pointer;border:0;border-radius:14px;
- padding:14px;background:#f4dce5;color:#633747;
- transition:.2s
+
+h1 {
+  text-align: center;
+  font-size: clamp(1.7rem, 6vw, 2.4rem);
+  font-weight: normal;
+  margin: 0 0 10px;
 }
-button:hover{background:#edc3d2}
-button:disabled{cursor:default;opacity:.85}
-button.correct{background:#d5ead9;color:#285b39}
-button.wrong{background:#f3c8ca;color:#842f3a}
-#feedback{min-height:45px;line-height:1.5;margin-top:16px}
-.mainbtn{background:#d96f93;color:white;margin-top:12px}
-.mainbtn:hover{background:#c45c80}
-.hidden{display:none}
+
+.intro {
+  text-align: center;
+  line-height: 1.7;
+  color: #765765;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: none;
+  border-radius: 14px;
+  padding: 13px 16px;
+  background: #d96f93;
+  color: white;
+}
+
+button:focus-visible {
+  outline: 3px solid #8d4260;
+  outline-offset: 3px;
+}
+
+.primary {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.progress {
+  height: 7px;
+  background: #f0dce3;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 18px 0;
+}
+
+#progressFill {
+  height: 100%;
+  width: 0;
+  background: #d96f93;
+  transition: width .25s;
+}
+
+#question {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  text-align: center;
+  margin: 24px 0;
+}
+
+#answers {
+  display: grid;
+  gap: 10px;
+}
+
+.answer {
+  text-align: left;
+  color: #633747;
+  background: #f5dce5;
+  border: 1px solid #e8bbcc;
+  line-height: 1.5;
+}
+
+.answer:hover:not(:disabled) {
+  background: #efc2d2;
+}
+
+.answer:disabled {
+  cursor: default;
+  opacity: 1;
+}
+
+.answer.correct {
+  background: #d9edda;
+  border-color: #82b987;
+  color: #244e2b;
+}
+
+.answer.wrong {
+  background: #f4d7d7;
+  border-color: #d99a9a;
+  color: #793c3c;
+}
+
+#feedback {
+  text-align: center;
+  line-height: 1.6;
+  min-height: 26px;
+  margin-top: 14px;
+}
+
+#nextButton {
+  display: none;
+  width: 100%;
+  margin-top: 14px;
+}
+
+#result {
+  display: none;
+  text-align: center;
+  line-height: 1.8;
+}
+
+.bigScore {
+  font-size: 2.6rem;
+  color: #c85f85;
+  margin: 15px 0;
+}
+
+.small {
+  font-size: .88rem;
+  text-align: center;
+  opacity: .75;
+  margin-top: 20px;
+}
+
+.hidden {
+  display: none !important;
+}
 </style>
 </head>
+
 <body>
 <main class="card">
- <div>🌷 İREM & ARİF 🌷</div>
- <h1>İrem'i Ne Kadar Tanıyorsun? ♡</h1>
- <p class="subtitle">Yakışıklım, bakalım sevgilini ne kadar iyi tanıyorsun? 🤭</p>
- <div class="progress" id="progress">Hazır mısın? 💗</div>
- <h2 id="question">Test başlamak üzere...</h2>
- <div id="answers"></div>
- <p id="feedback"></p>
- <button class="mainbtn" id="start">Teste başla 💌</button>
- <button class="mainbtn hidden" id="next">Sonraki soru →</button>
- <button class="mainbtn hidden" id="again">Bir daha oyna ♡</button>
+
+  <section id="startScreen">
+    <h1>İrem'i Ne Kadar Tanıyorsun? ♡</h1>
+    <p class="intro">
+      Arif, bakalım İrem'i ne kadar iyi tanıyorsun? 🤭
+      <br>
+      Biraz anı, biraz duygu, biraz da dikkat!
+      <br>
+      Her soruda doğru cevabı seç ve puanını gör. 💗
+    </p>
+    <button class="primary" id="startButton">Teste başlayalım ♡</button>
+    <p class="small">Her oyununda 10 farklı soru sorulur.</p>
+  </section>
+
+  <section id="quizScreen" class="hidden">
+    <div style="display:flex;justify-content:space-between;gap:10px">
+      <span id="questionCount">SORU 1 / 10</span>
+      <span>💗 Puan: <b id="score">0</b></span>
+    </div>
+
+    <div class="progress">
+      <div id="progressFill"></div>
+    </div>
+
+    <p id="question"></p>
+    <div id="answers"></div>
+    <p id="feedback" aria-live="polite"></p>
+    <button id="nextButton">Sonraki soru →</button>
+  </section>
+
+  <section id="result">
+    <h1>Test Tamamlandı! ♡</h1>
+    <div class="bigScore" id="finalScore"></div>
+    <p id="resultMessage"></p>
+    <p id="resultDetail"></p>
+    <button class="primary" id="againButton">Yeniden oyna 💗</button>
+  </section>
+
 </main>
 
 <script>
@@ -60,7 +208,7 @@ c:1
 },
 {
 q:"İrem'in canı sıkkınken onunla nasıl konuşulması hoşuna gider?",
-a:["Ciddi ve mesafeli konuşulması","Onunla tartışılması","Şefkatli, tatlı ve sevecen konuşulması","Sorunun önemsiz olduğunun söylenmesi"],
+a:["Ciddi ve mesafeli konuşulması","Onunla alay edilmesi","Şefkatli, tatlı ve sevecen konuşulması","Sorunun önemsiz olduğunun söylenmesi"],
 c:2
 },
 {
@@ -69,13 +217,13 @@ a:["Hiç etkilenmemiş gibi davranır","Davranışlarıyla belli eder ama sözle
 c:1
 },
 {
-q:"İrem kendini değersiz hissettiğinde ne onu daha çok rahatlatır?",
+q:"İrem kendini değersiz hissettiğinde ne onu rahatlatır?",
 a:["Konunun görmezden gelinmesi","Başkalarıyla kıyaslanması","Sadece 'takma kafana' denmesi","Değerli olduğunun söylenmesi ve nedenlerinin açıklanması"],
 c:3
 },
 {
-q:"İrem'in kötü geçen bir günün ardından en çok hoşuna gidecek şey hangisidir?",
-a:["Birlikte komik şeyler konuşup güldürülmek","Bütün gün sorgulanmak","Tek başına bırakılmak","Hatalarının sıralanması"],
+q:"İrem'in kötü geçen bir günün ardından en çok hoşuna gidecek şey nedir?",
+a:["Birlikte komik şeyler konuşup gülmek","Bütün gün sorgulanmak","Tek başına bırakılmak","Hatalarının sıralanması"],
 c:0
 },
 {
@@ -89,48 +237,48 @@ a:["'Ağlama artık' deyip konuyu kapatmasını","Güzel sözlerle onu mutlu etm
 c:1
 },
 {
-q:"İrem kendine güvenemediğinde Arif nasıl davranırsa kendini daha iyi hisseder?",
+q:"İrem kendine güvenemediğinde Arif nasıl davranırsa daha iyi hisseder?",
 a:["Başkalarıyla kıyaslarsa","Konuyu değiştirirse","Tek başına halletmesini söylerse","Ona güvendiğini hissettirip başarılarını hatırlatırsa"],
 c:3
 },
 {
 q:"İrem çok mutlu olduğunda bunu genellikle nasıl belli eder?",
-a:["Sessizleşerek","Sadece gülümseyerek","Sürekli gülüp çok heyecanlanarak","Duygularını hiç göstermeyerek"],
-c:2
-},
-{
-q:"İrem'i en kolay duygulandıran konulardan biri hangisidir?",
-a:["Ailesini ve sevdiklerini bir gün kaybetme düşüncesi","Alışveriş yapmak","Hava durumunun değişmesi","Günlük planların küçük ayrıntıları"],
+a:["Sürekli gülüp heyecanlanarak","Sessizleşerek","Duygularını hiç göstermeyerek","Hemen ortamdan ayrılarak"],
 c:0
 },
 {
-q:"İrem yapılan bir fedakârlıktan en çok ne zaman etkilenir?",
-a:["Herkesin önünde anlatıldığında","Maddi veya manevi fedakârlık yapıldığında","Hediye çok pahalı olduğunda","Başkalarıyla karşılaştırıldığında"],
+q:"İrem'i en çok korkutan şeylerden biri nedir?",
+a:["Alışverişe çıkmak","Yeni şarkılar dinlemek","Ailesini ve sevdiklerini kaybetmek","Planlarının değişmesi"],
+c:2
+},
+{
+q:"İrem'i yapılan bir fedakârlık neden etkiler?",
+a:["Herkesin önünde anlatıldığı için","Maddi veya manevi bir şeyden onun için vazgeçildiğini hissettiği için","Hediye çok pahalı olduğu için","Başkalarıyla karşılaştırıldığı için"],
 c:1
 },
 {
 q:"İrem için bir hediyeyi özel yapan en önemli şey nedir?",
-a:["Büyük olması","Ünlü bir markadan alınması","Herkesin beğenmesi","Düşünülmüş olması"],
+a:["Büyük olması","Ünlü bir markadan alınması","Herkesin beğenmesi","Onun düşünülerek hazırlanması"],
 c:3
 },
 {
-q:"İrem küçük bir hediyeyi ne zaman çok anlamlı bulur?",
-a:["Arkasında büyük bir düşünce olduğunda","Çok pahalı olduğunda","Başkaları da aynısını aldığında","Sadece güzel göründüğünde"],
+q:"İrem küçük bir sürprizi ne zaman çok anlamlı bulur?",
+a:["Arkasında düşünce ve emek olduğunda","Çok pahalı olduğunda","Herkes aynısını aldığında","Sadece güzel göründüğünde"],
 c:0
 },
 {
-q:"İrem neden sevildiğini ve güzel yanlarını duymaya ihtiyaç duyar?",
+q:"İrem neden iltifat duymaya ihtiyaç duyar?",
 a:["Herkesin dikkatini çekmek istediği için","İltifatları hiç önemsemediği için","Özgüveni düşük olduğu için","Sadece özel günlerde duymak istediği için"],
 c:2
 },
 {
-q:"İrem için birlikte vakit geçirmek mi, hediye almak mı daha anlamlıdır?",
-a:["Yalnızca hediye almak","İkisi de ama birlikte vakit geçirmek biraz daha anlamlı","Yalnızca pahalı hediyeler","İkisi de önemli değil"],
+q:"İrem için hangisi daha anlamlıdır?",
+a:["Yalnızca pahalı hediyeler","Hem birlikte vakit geçirmek hem güzel sözler; özellikle birlikte vakit geçirmek","Yalnızca sosyal medyada paylaşım yapmak","İkisi de önemsizdir"],
 c:1
 },
 {
-q:"Arif, İrem'e sevildiğini hissettirdiğinde İrem genellikle ne hisseder?",
-a:["Bundan rahatsız olur","İlgisiz kalır","Kendisini baskı altında hisseder","Kendini değerli ve güvende hisseder"],
+q:"Arif, İrem'e sevildiğini hissettirdiğinde İrem ne hisseder?",
+a:["Rahatsız olur","İlgisiz kalır","Kendini baskı altında hisseder","Kendini değerli ve güvende hisseder"],
 c:3
 },
 {
@@ -144,94 +292,557 @@ a:["Yalnızca güzel sözler","Yalnızca hediye almak","Hem sözler hem davranı
 c:2
 },
 {
-q:"İrem yıl dönümü gibi özel günlerde neden mutlu olur?",
-a:["Başkalarının hediyelerini görmek için","İlişkinin alışkanlığa dönüşmediğini ve hâlâ sevildiğini hissetmek için","Sadece fotoğraf çekmek için","Hediye pahalı olduğu için"],
+q:"İrem romantik jestlerden neden mutlu olur?",
+a:["Başkaları görsün diye","İlişkilerinin alışkanlıktan ibaret olmadığını ve hâlâ sevildiklerini hissettiği için","Hediye pahalı olduğu için","Fotoğraf çekmek için"],
 c:1
 },
 {
 q:"İrem'in laf arasında söylediği küçük şeyleri hatırlamak neden önemlidir?",
 a:["Her konuşmayı kaydetmek gerektiği için","Sonradan tartışmada kullanmak için","Sadece şaşırtmak için","Küçük ayrıntılara dikkat edildiğini gösterdiği için"],
 c:3
+},
+{
+q:"İrem tartışma sırasında karşısındaki kişiden ne bekler?",
+a:["Konuşmayı hemen bitirmemesini","Telefonuyla ilgilenmesini","Onu görmezden gelmesini","Konuyu hiç çözmeden kapatmasını"],
+c:0
+},
+{
+q:"İrem tartışmadan sonra neden üzgün kalabilir?",
+a:["Hemen her şeyi unutmak istediği için","Tartışmayı sevdiği için","Söylenen kırıcı sözleri hak etmiş olabileceğini düşündüğü için","Konuşmaktan hoşlanmadığı için"],
+c:2
+},
+{
+q:"İrem'in bir tartışmadan sonra normale dönmesi için ne gerekebilir?",
+a:["Birkaç dakika","En azından bir gün","Hiç zaman gerekmez","Bir hafta boyunca konuşmamak"],
+c:1
+},
+{
+q:"İrem için özür dilemek ne zaman daha anlamlıdır?",
+a:["Herkesin önünde söylendiğinde","Hediye alındığında","Konuşma tamamen kesildiğinde","Kişi aynı hatayı tekrarlamamak için çaba gösterdiğinde"],
+c:3
+},
+{
+q:"İrem, yapılan bir hatanın gerçekten düzeltildiğini nasıl anlar?",
+a:["Aynı davranış tekrar edilmediğinde","Kişi konuyu değiştirdiğinde","Sadece pahalı bir hediye alındığında","Hiç konuşulmadığında"],
+c:0
+},
+{
+q:"Arif'in sesini yükseltmesi İrem'e ne düşündürebilir?",
+a:["Arif'in çok mutlu olduğunu","Konunun önemsiz olduğunu","Arif'in sabrının tükenmeye başladığını","İrem'in mutlaka haklı olduğunu"],
+c:2
+},
+{
+q:"İrem tartışmalar hakkında nasıl bir yaklaşımı tercih eder?",
+a:["Sorunları görmezden gelmeyi","Uzun sürse bile aynı gün konuşup çözmeyi","Günlerce konuşmamayı","Başkasının çözmesini beklemeyi"],
+c:1
+},
+{
+q:"İrem tartışma sırasında karşısındaki kişiden ne ister?",
+a:["Sadece kendi fikrini savunmasını","Konuyu şakaya vurmasını","Onu hemen suçlamasını","Aslında ne demek istediğini düşünmesini"],
+c:3
+},
+{
+q:"İrem'in güvenini en çok ne zedeler?",
+a:["Yalan söylenmesi","Birlikte vakit geçirilmesi","Sürpriz yapılması","Güzel söz söylenmesi"],
+c:0
+},
+{
+q:"İrem kırıldığında karşısındaki kişi hiçbir şey olmamış gibi davranırsa ne hissedebilir?",
+a:["Her şeyin düzeldiğini","Çok eğlendiğini","Değersiz olduğunu","Hiçbir şey hissetmediğini"],
+c:2
+},
+{
+q:"İrem heyecanlandığında nasıl davranabilir?",
+a:["Tamamen sessizleşir","Güler, sabırsızlanır ve heyecanını belli eder","Ortamdan uzaklaşır","Hemen uyumak ister"],
+c:1
+},
+{
+q:"İrem bazen neden aynı şeyi tekrar tekrar sorabilir?",
+a:["Karşısındakini kızdırmak için","Konuşmayı uzatmak için","Cevabı hiç önemsemediği için","İçini rahatlatmak ve bir sorun olmadığından emin olmak için"],
+c:3
+},
+{
+q:"İrem önemli bir karar verirken çoğunlukla neye güvenir?",
+a:["Duygularına","Yalnızca başkalarının fikirlerine","Rastgele tahminlere","Hiç düşünmeden seçim yapmaya"],
+c:0
+},
+{
+q:"İrem bir konuda kararsız kaldığında nasıl bir yardım ister?",
+a:["'Bilmiyorum' denmesini","Konunun geçiştirilmesini","Seçeneklerin ayrıntılı karşılaştırılıp gerçek bir öneri sunulmasını","Kararın onun yerine habersizce verilmesini"],
+c:2
+},
+{
+q:"İrem beklediği bir şey gerçekleşmediğinde ne hissedebilir?",
+a:["Hiç etkilenmez","Hayal kırıklığı yaşayıp sevilmediğini düşünebilir","Hemen mutlu olur","Konuyu tamamen unutur"],
+c:1
+},
+{
+q:"İrem yeni bir şeye başlarken, bu iyi bir fırsat olsa bile ne yaşayabilir?",
+a:["Hiçbir duygu yaşamaz","Sadece öfke","Kesinlikle istemez","Kaygı ve endişe"],
+c:3
+},
+{
+q:"İrem heyecanını paylaşırken nasıl davranabilir?",
+a:["Canlı canlı anlatıp yerinde duramayabilir","Konuşmayı tamamen reddeder","Her şeyi gizler","Karşısındakine kızar"],
+c:0
+},
+{
+q:"Verilen bir söz tutulmadığında İrem ne düşünebilir?",
+a:["Sözlerin hiçbir anlamı olmadığını","Kendisi çok şanslı olduğunu","Karşısındaki kişi için önemli olmadığını","Her şeyin mükemmel olduğunu"],
+c:2
+},
+{
+q:"İrem çok düşündüğü konularda neye ihtiyaç duyar?",
+a:["Endişelerinin küçümsenmesine","İçini rahatlatacak açıklamalara","Konunun aniden kapatılmasına","Başkalarıyla kıyaslanmaya"],
+c:1
+},
+{
+q:"İrem kendini güvende hissettiğinde nasıl davranabilir?",
+a:["Her zaman mesafeli kalır","Hiç konuşmaz","Duygularını tamamen gizler","İçindeki çocuk ortaya çıkar; şımarık, rahat ve açık olabilir"],
+c:3
+},
+{
+q:"İrem'in ilişkideki korkularından biri hangisidir?",
+a:["Arif'in ondan sıkılıp onu kaybetmesi","Birlikte gülmek","Gelecek planları yapmak","Birlikte vakit geçirmek"],
+c:0
+},
+{
+q:"İrem sevildiğinden emin olmak için bazen ne yapabilir?",
+a:["Herkesten uzaklaşır","Duygularını tamamen saklar","Davranışlara dikkat edip aralarında mesafe olup olmadığını sorabilir","İlişkiyi önemsemez"],
+c:2
+},
+{
+q:"İrem kendini en çok ne zaman yalnız hissedebilir?",
+a:["Sevdiği kişi yanındayken","Konuşacak kimsesi olmadığında","Güzel bir sürpriz aldığında","Birlikte güldüklerinde"],
+c:1
+},
+{
+q:"İrem kendine güvenemediğinde hangi söz ona iyi gelir?",
+a:["Başkaları senden daha iyi","Bunu asla yapamazsın","Boşuna uğraşıyorsun","Güçlü olduğunu ve isterse başarabileceğini hatırlatmak"],
+c:3
+},
+{
+q:"İrem'i özellikle incitebilecek davranışlardan biri hangisidir?",
+a:["Sevgisinin sorgulanması, emeğinin görülmemesi veya ailesi hakkında kötü sözler söylenmesi","Birlikte gülmek","Güzel bir söz duymak","Birlikte plan yapmak"],
+c:0
+},
+{
+q:"İrem başkalarıyla kıyaslandığında ne hissedebilir?",
+a:["Daha güçlü olduğunu","Hiç etkilenmediğini","Yetersiz ve işe yaramaz olduğunu","Çok eğlendiğini"],
+c:2
+},
+{
+q:"İrem'in ilişkide kendini güvende hissetmesi için ne önemlidir?",
+a:["Sürekli kıskandırılmak","Sevildiğini hissetmek","İlgisiz kalınması","Sözlerin tutulmaması"],
+c:1
+},
+{
+q:"İrem'in hassas olduğu konulardan biri hangisidir?",
+a:["Yeni şarkılar","Hava durumu","Film türleri","Anne-baba yokluğu ve özgüvenle ilgili konular"],
+c:3
+},
+{
+q:"İrem endişelendiğinde nasıl yaklaşılması hoşuna gider?",
+a:["Endişesinin gereksiz olduğu şefkatle anlatıldığında","Onunla alay edildiğinde","Korkularının küçümsendiğinde","Konuşmasına izin verilmediğinde"],
+c:0
+},
+{
+q:"İrem bir korkusunu anlattığında ne bekler?",
+a:["Korkusunun saçma olduğunun söylenmesini","Hemen konunun değiştirilmesini","Çocukla konuşur gibi nazikçe açıklama yapılmasını","Başkalarıyla kıyaslanmayı"],
+c:2
+},
+{
+q:"Arif'in İrem'i düşündüğünü göstermesi İrem'e ne hissettirir?",
+a:["Baskı altında olduğunu","Sevildiğini","Uzaklaşmak istediğini","Öfkelendiğini"],
+c:1
+},
+{
+q:"İrem bir şey anlatırken Arif'in dikkatle dinlemesi neden önemlidir?",
+a:["Konuşmayı uzatmak için","Daha sonra unutmak için","Sadece cevap vermek için","Kendini dinlenmiş ve önemsenmiş hissetmesi için"],
+c:3
+},
+{
+q:"İrem yoğun bir günün ardından Arif'ten nasıl bir ilgi bekleyebilir?",
+a:["Şefkatli, tatlı ve bebek gibi özenli davranmasını","Ona mesafeli davranmasını","Yaptığı işleri eleştirmesini","Konuşmayı reddetmesini"],
+c:0
+},
+{
+q:"İrem için plansızca yapılan bir plan ne gösterebilir?",
+a:["Kararsızlık dışında hiçbir şey","Zaman kaybını","Arif'in onun için çaba gösterdiğini","İlgisizliği"],
+c:2
+},
+{
+q:"İrem'in sevdiği kişiyle geçirdiği zamanda en önemli şeylerden biri nedir?",
+a:["Sürekli başkalarıyla ilgilenmek","Sadakat ve güven","Birbirini kıskandırmak","Duyguları saklamak"],
+c:1
+},
+{
+q:"İrem basit bir teselli cümlesinden çok neye ihtiyaç duyar?",
+a:["Konunun kapatılmasına","Kendisine kızılmasına","Hemen unutmasının söylenmesine","Gerçekten anlaşılmaya ve ayrıntılı şekilde dinlenmeye"],
+c:3
+},
+{
+q:"İrem, Arif'in onu tanıdığını nasıl hisseder?",
+a:["Kişilik özelliklerini ve küçük ayrıntılarını bildiğinde","Sadece doğum tarihini bildiğinde","Yalnızca sevdiği rengi bildiğinde","Hiç soru sormadığında"],
+c:0
+},
+{
+q:"Arif'in gelecekle ilgili konuşması İrem'e ne hissettirebilir?",
+a:["Gelecekten kaçmak istediğini","İlişkiyi önemsemediğini","Arif'in onunla bir gelecek istediğini ve plan yaptığını","Birlikte zaman geçirmek istemediğini"],
+c:2
+},
+{
+q:"İrem'in mutlu olmasını sağlayabilecek küçük bir davranış hangisidir?",
+a:["Onu başkalarıyla kıyaslamak","Düşünülerek yapılmış bir jest","Bir sözünü tutmamak","Onu görmezden gelmek"],
+c:1
+},
+{
+q:"İrem bir tartışmadan sonra ne olmasını ister?",
+a:["Konunun unutulmasını","Kimsenin özür dilememesini","Aynı sorunun tekrar tekrar yaşanmasını","Sorundan ders çıkarılıp tamamen çözüme kavuşturulmasını"],
+c:3
+},
+{
+q:"İrem ve Arif'in ilk mesajı neydi?",
+a:["Selam","Nasılsın?","Günaydın","Aşkım"],
+c:0
+},
+{
+q:"İlk buluşma planında sonradan ne değişti?",
+a:["Sinema planı iptal oldu","Bir restorana gittiler","İrem'in arkadaşı ve erkek arkadaşı da yanlarına gelip oturdu","Hiç buluşmadılar"],
+c:2
+},
+{
+q:"Arif ilk buluşma günü arkadaşlarıyla ne yapmayı planlıyordu?",
+a:["Alışverişe çıkmayı","Maç izlemeyi","Sinemaya gitmeyi","Konser izlemeyi"],
+c:1
+},
+{
+q:"Arif ilk buluşmada ne giyiyordu?",
+a:["Beyaz gömlek ve siyah pantolon","Gri takım elbise","Kırmızı mont ve kot pantolon","Fenerbahçe forması, lacivert ceket ve açık mavi pantolon"],
+c:3
+},
+{
+q:"İrem ilk buluşmada ne giymişti?",
+a:["Siyah şort, siyah straplez üst ve oversize deri ceket","Uzun beyaz elbise","Mavi takım elbise","Pembe kaban"],
+c:0
+},
+{
+q:"Sinemadaki anılarından biri hangisidir?",
+a:["Birlikte yemek pişirmeleri","Sahilde maç izlemeleri","Arif'in kolunu İrem'in omzuna atması ve İrem'in kolunu beline yönlendirmesi","Birlikte alışveriş yapmaları"],
+c:2
+},
+{
+q:"İrem ve Arif için sinemadaki el ele tutuşma anısı neden özeldir?",
+a:["İlk kez birlikte yemek yedikleri için","İlk kez el ele tutuştukları için","İlk kez mesajlaştıkları için","İlk kez doğum günü kutladıkları için"],
+c:1
+},
+{
+q:"İrem, Arif'le birbirleri için yaratılmış gibi hissettiği günü özellikle nasıl anlatmıştı?",
+a:["İlk alışveriş günleri","Bir okul gezisi","Bir sinema galası","Sahilde piknik yaptıkları gün"],
+c:3
+},
+{
+q:"Arif'in doğum günü pastasında ne yazıyordu?",
+a:["İyi ki aşkım","Nice senelere dostum","İyi ki varsın kardeşim","Mutlu yıllar öğretmenim"],
+c:0
+},
+{
+q:"İrem geçmişte hangi anısını yeniden yaşamayı özellikle istemişti?",
+a:["Bir alışveriş gününü","Bir sınav gününü","Sahilde piknik yaptıkları günü","Bir okul gününü"],
+c:2
+},
+{
+q:"İrem hayallerinden bahsettiğinde nasıl bir tepki ister?",
+a:["Hayalleriyle dalga geçilmesini","Olumlu yorum ve destek verilmesini","Konunun hemen kapatılmasını","Başkalarıyla kıyaslanmayı"],
+c:1
+},
+{
+q:"İrem'in hayali hangisidir?",
+a:["Dünyayı tek başına gezmek","Ünlü bir şarkıcı olmak","Bir spor kulübü kurmak","Mutlu bir evlilik, hastanede çalışmak ve tatlı bir erkek çocuğu sahibi olmak"],
+c:3
+},
+{
+q:"İrem başarısını en çok kiminle paylaşmak ister?",
+a:["Başarısına gerçekten sevineceğini bildiği insanlarla","Onu küçümseyenlerle","Hiç tanımadığı kişilerle","Kimseyle"],
+c:0
+},
+{
+q:"İrem'in gelecekle ilgili en çok stres yaşadığı şeylerden biri nedir?",
+a:["Şarkı seçmek","Fotoğraf çekmek","Geleceğin belirsizliği","Birlikte gülmek"],
+c:2
+},
+{
+q:"İrem için birlikte kurulan hayaller nasıl bir değere sahiptir?",
+a:["Önemsizdir","Altın değerindedir","Sadece eğlence amaçlıdır","Hemen unutulmalıdır"],
+c:1
+},
+{
+q:"İrem yeni bir başlangıçta kaygı yaşarsa sevdiği kişiden ne bekler?",
+a:["Onu acele ettirmesini","Korkularıyla dalga geçmesini","Yalnız bırakmasını","Kaygısını azaltmasına yardımcı olmasını"],
+c:3
+},
+{
+q:"İrem için başarı yalnızca hedefe ulaşmak mıdır?",
+a:["Hayır, özgüveninin artması da başarıdır","Evet, başka hiçbir şey önemli değildir","Hayır, başarı önemsizdir","Sadece başkalarının takdiridir"],
+c:0
+},
+{
+q:"İrem başarısız olduğunu düşündüğünde ne duymaya ihtiyaç duyabilir?",
+a:["Bir daha denememesini","Başkalarının daha iyi olduğunu","Bir hayalin gerçekleşmemesinin son olmadığına dair güvenceyi","Hatalarının tekrar tekrar anlatılmasını"],
+c:2
+},
+{
+q:"İrem nasıl bir ilişki hayal eder?",
+a:["Sürekli ciddi ve mesafeli","Çocuklarına gülerek anlatabilecekleri eğlenceli bir ilişki","Birbirlerinin duygularını sakladığı","Birbirini sürekli kıskandırdığı"],
+c:1
+},
+{
+q:"İrem'in rahatlamak için sevdiği şeylerden biri nedir?",
+a:["Kalabalıkta tartışmak","Sürekli telefonla ilgilenmek","Aceleyle karar vermek","Sevgilisiyle sakin ve huzurlu konuşmak"],
+c:3
+},
+{
+q:"İrem kendine zaman ayırırken ne yapmayı sever?",
+a:["Kişisel bakım yapmayı","Sürekli tartışmayı","Bütün planlarını iptal etmeyi","Başkalarının onu eleştirmesini"],
+c:0
+},
+{
+q:"İrem'in plansız bir günde tercih edebileceği yaklaşım hangisidir?",
+a:["Her dakikayı önceden belirlemek","Hiçbir şey yapmasına izin vermemek","O an içinden ne geliyorsa onu yapmak","Bütün günü başkalarının planına göre geçirmek"],
+c:2
+},
+{
+q:"İrem'i mutluluktan ağlatabilecek şeylerden biri nedir?",
+a:["Birinin onu kıyaslaması","Küçük ama düşünülmüş bir sürpriz","Birinin verdiği sözü tutmaması","Bir konunun geçiştirilmesi"],
+c:1
+},
+{
+q:"İrem evde nasıl vakit geçirmekten hoşlanır?",
+a:["Sürekli gürültü ve tartışmayla","Herkesin ayrı odada olmasıyla","Birbirini görmezden gelerek","Sakin, huzurlu ve eğlenceli zaman geçirerek"],
+c:3
+},
+{
+q:"İrem dışarıda bir gün geçirmek için neye daha çok önem verir?",
+a:["Sevdiği kişinin yanında olmasına","Mutlaka pahalı bir yere gitmeye","Herkesin fotoğraflarını beğenmesine","Planın çok ayrıntılı olmasına"],
+c:0
+},
+{
+q:"İrem heyecanını paylaşırken karşısındaki kişi nasıl davranmalı?",
+a:["Heyecanını bastırmalı","Konuyu değiştirmeli","Hevesini kırmadan onun sevincine ortak olmalı","Onunla dalga geçmeli"],
+c:2
+},
+{
+q:"İrem'in küçük bir ayrıntının hatırlanmasından mutlu olması neyi gösterir?",
+a:["Her şeyi unuttuğunu","Gerçekten önemsendiğini hissettiğini","Sürprizlerden hoşlanmadığını","Sadece pahalı hediyeleri sevdiğini"],
+c:1
+},
+{
+q:"İrem stresli olduğunda nasıl bir açıklama duymak ister?",
+a:["Sorunun tamamen önemsiz olduğunu","Kendisiyle alay edilmesini","Hemen susmasının söylenmesini","Stresin yönetilebilir olduğunun nazikçe anlatılmasını"],
+c:3
+},
+{
+q:"İrem hangi konuşmaların ardından kendini daha iyi hisseder?",
+a:["Yargılanmadığı ve hevesinin kırılmadığı konuşmaların","Sürekli eleştirildiği konuşmaların","Başkalarıyla kıyaslandığı konuşmaların","Duygularının yok sayıldığı konuşmaların"],
+c:0
+},
+{
+q:"İrem için bir ilişkide vazgeçilmez olan nedir?",
+a:["Sürekli rekabet","Kıskandırma oyunları","Güven ve sadakat","Duyguları gizlemek"],
+c:2
+},
+{
+q:"İrem'i diğer insanlardan ayıran özelliklerden biri nedir?",
+a:["Herkesle aynı olması","Kendine özgü ve bazen tuhaf alışkanlıklarının olması","Hiçbir duygusunun olmaması","Sürprizlerden nefret etmesi"],
+c:1
+},
+{
+q:"İrem bazen Arif'in ne yapmasını bekler?",
+a:["Her şeyi görmezden gelmesini","Sadece kelimelere odaklanmasını","Onu hiç tanımıyormuş gibi davranmasını","Onu tanıdığı için aslında ne demek istediğini anlamaya çalışmasını"],
+c:3
+},
+{
+q:"İrem, birinin gerçekten ilgilendiğini en çok nasıl anlar?",
+a:["Düşünceli ve özenli davranmasından","Sürekli kendinden bahsetmesinden","Sadece pahalı hediyeler almasından","Onu başkalarıyla kıyaslamasından"],
+c:0
+},
+{
+q:"İrem bir konu hakkında konuşurken hangi tepkiyle anlaşıldığını hissedebilir?",
+a:["Konunun hemen değiştirilmesiyle","Kendisine gülünmesiyle","Karşısındaki kişinin söylediklerine katılıp bunu belli etmesiyle","Telefonla ilgilenilmesiyle"],
+c:2
+},
+{
+q:"İrem için affetmekle yeniden güvenmek arasındaki fark nedir?",
+a:["İkisi tamamen aynıdır","Güven varken affetmek fedakârlık olabilir; büyük bir hatadan sonra yeniden güvenmek daha farklıdır","Hiçbirini önemsemez","Her hata hemen unutulur"],
+c:1
+},
+{
+q:"Sevdiği biri zor bir dönemden geçerken İrem nasıl yaklaşır?",
+a:["Onu suçlayarak","Duygularını küçümseyerek","Hemen uzaklaşarak","Onun hislerini anlamaya çalışıp empati kurarak"],
+c:3
+},
+{
+q:"İrem için küçük bir şey bile neden çok mutlu edici olabilir?",
+a:["İçinde kendisi için düşünülmüş bir emek olduğu için","Mutlaka pahalı olduğu için","Herkesin aynısına sahip olduğu için","Başkaları gördüğü için"],
+c:0
+},
+{
+q:"Arif, İrem'i daha iyi anlamak için nelere dikkat etmeli?",
+a:["Sadece söylediklerinin son kelimesine","Yalnızca mesajlarına","Davranışlarına ve farklı durumlarda verdiği tepkilere","Sadece mutlu olduğu anlara"],
+c:2
+},
+{
+q:"İrem'in tepkilerinin arkasındaki anlamı anlamak neden önemlidir?",
+a:["Her zaman haklı olduğunu kanıtlamak için","Aslında ne demek istediğinin anlaşılması için","Konuyu hemen bitirmek için","Tartışmayı kazanmak için"],
+c:1
 }
 ];
 
-let questions=[], index=0, score=0, locked=false;
+let questions = [];
+let current = 0;
+let score = 0;
+let locked = false;
+const QUESTIONS_PER_GAME = 10;
 
-const questionEl=document.getElementById("question");
-const answersEl=document.getElementById("answers");
-const progressEl=document.getElementById("progress");
-const feedbackEl=document.getElementById("feedback");
-const startBtn=document.getElementById("start");
-const nextBtn=document.getElementById("next");
-const againBtn=document.getElementById("again");
+const startScreen = document.getElementById("startScreen");
+const quizScreen = document.getElementById("quizScreen");
+const resultScreen = document.getElementById("result");
+const questionEl = document.getElementById("question");
+const answersEl = document.getElementById("answers");
+const feedbackEl = document.getElementById("feedback");
+const nextButton = document.getElementById("nextButton");
 
-function startQuiz(){
- questions=[...questionBank].sort(()=>Math.random()-0.5).slice(0,10);
- index=0;
- score=0;
- startBtn.classList.add("hidden");
- againBtn.classList.add("hidden");
- showQuestion();
+function shuffle(array) {
+  const result = [...array];
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+  return result;
 }
 
-function showQuestion(){
- locked=false;
- nextBtn.classList.add("hidden");
- feedbackEl.textContent="";
- progressEl.textContent=`SORU ${index+1} / ${questions.length}  ·  PUAN: ${score}`;
- const q=questions[index];
- questionEl.textContent=q.q;
- answersEl.innerHTML="";
- q.a.forEach((answer,i)=>{
-  const btn=document.createElement("button");
-  btn.textContent=answer;
-  btn.addEventListener("click",()=>chooseAnswer(i,btn));
-  answersEl.appendChild(btn);
- });
+function startQuiz() {
+  questions = shuffle(questionBank)
+    .slice(0, QUESTIONS_PER_GAME)
+    .map(q => {
+      const options = q.a.map((text, index) => ({
+        text,
+        correct: index === q.c
+      }));
+      const mixed = shuffle(options);
+      return {
+        q: q.q,
+        a: mixed.map(option => option.text),
+        c: mixed.findIndex(option => option.correct)
+      };
+    });
+
+  current = 0;
+  score = 0;
+
+  startScreen.classList.add("hidden");
+  resultScreen.style.display = "none";
+  quizScreen.classList.remove("hidden");
+
+  document.getElementById("score").textContent = score;
+  showQuestion();
 }
 
-function chooseAnswer(choice,btn){
- if(locked)return;
- locked=true;
- const q=questions[index];
- const buttons=[...answersEl.querySelectorAll("button")];
- buttons.forEach(b=>b.disabled=true);
+function showQuestion() {
+  locked = false;
+  const q = questions[current];
 
- if(choice===q.c){
-  score++;
-  btn.classList.add("correct");
-  feedbackEl.textContent="Doğru cevap! İrem'i iyi tanıyorsun. 💗";
- }else{
-  btn.classList.add("wrong");
-  buttons[q.c].classList.add("correct");
-  feedbackEl.textContent="Bu sefer olmadı yakışıklım. Doğru cevabı unutma. ♡";
- }
- progressEl.textContent=`SORU ${index+1} / ${questions.length}  ·  PUAN: ${score}`;
- nextBtn.textContent=index===questions.length-1?"Sonucunu gör 💌":"Sonraki soru →";
- nextBtn.classList.remove("hidden");
+  document.getElementById("questionCount").textContent =
+    `SORU ${current + 1} / ${questions.length}`;
+
+  document.getElementById("progressFill").style.width =
+    `${(current / questions.length) * 100}%`;
+
+  questionEl.textContent = q.q;
+  feedbackEl.textContent = "Doğru cevabı seç bakalım! 💗";
+  answersEl.innerHTML = "";
+  nextButton.style.display = "none";
+
+  q.a.forEach((answer, index) => {
+    const button = document.createElement("button");
+    button.className = "answer";
+    button.textContent = answer;
+    button.addEventListener("click", () => chooseAnswer(index));
+    answersEl.appendChild(button);
+  });
 }
 
-function showResult(){
- progressEl.textContent="TEST TAMAMLANDI ♡";
- questionEl.textContent=`${questions.length} soruda ${score} doğru!`;
- answersEl.innerHTML="";
- feedbackEl.textContent=
- score===10?"İrem'i avucunun içi gibi tanıyorsun! 🥹💗":
- score>=7?"Gayet iyi yakışıklım! İrem'i biraz daha keşfet. 💕":
- score>=4?"Fena değil ama İrem hakkında öğreneceklerin var. 🌷":
- "İrem'le daha çok sohbet etme zamanı! 💌";
- nextBtn.classList.add("hidden");
- againBtn.classList.remove("hidden");
+function chooseAnswer(selected) {
+  if (locked) return;
+  locked = true;
+
+  const q = questions[current];
+  const buttons = [...answersEl.querySelectorAll("button")];
+
+  buttons.forEach(button => button.disabled = true);
+
+  if (selected === q.c) {
+    score++;
+    buttons[selected].classList.add("correct");
+    buttons[selected].textContent += " ✓";
+    feedbackEl.textContent = "Bildin! Aferin sana. 💗";
+  } else {
+    buttons[selected].classList.add("wrong");
+    buttons[selected].textContent += " ✕";
+    buttons[q.c].classList.add("correct");
+    buttons[q.c].textContent += " ✓";
+    feedbackEl.textContent = "Bu sefer olmadı ama şimdi öğrendin. ♡";
+  }
+
+  document.getElementById("score").textContent = score;
+  document.getElementById("progressFill").style.width =
+    `${((current + 1) / questions.length) * 100}%`;
+
+  nextButton.textContent =
+    current === questions.length - 1 ? "Sonucu gör 💌" : "Sonraki soru →";
+
+  nextButton.style.display = "block";
 }
 
-nextBtn.addEventListener("click",()=>{
- index++;
- if(index<questions.length)showQuestion();
- else showResult();
-});
+function nextQuestion() {
+  current++;
 
-startBtn.addEventListener("click",startQuiz);
-againBtn.addEventListener("click",startQuiz);
+  if (current < questions.length) {
+    showQuestion();
+  } else {
+    showResult();
+  }
+}
+
+function showResult() {
+  quizScreen.classList.add("hidden");
+  resultScreen.style.display = "block";
+
+  document.getElementById("finalScore").textContent =
+    `${score} / ${questions.length}`;
+
+  let message;
+
+  if (score === 10) {
+    message = "İrem'i çok iyi tanıyorsun! 🥹💗";
+  } else if (score >= 8) {
+    message = "İrem seni görünce gurur duyar! 💕";
+  } else if (score >= 6) {
+    message = "Çok güzel! Biraz daha anı biriktirin. 🌷";
+  } else if (score >= 4) {
+    message = "Daha keşfedilecek çok şey var. 💌";
+  } else {
+    message = "İrem'i daha yakından tanıma zamanı! 💗";
+  }
+
+  document.getElementById("resultMessage").textContent = message;
+  document.getElementById("resultDetail").textContent =
+    "En güzel cevap, onu dinleyerek ve birlikte yeni anılar biriktirerek öğrenilir. ♡";
+}
+
+document.getElementById("startButton").addEventListener("click", startQuiz);
+nextButton.addEventListener("click", nextQuestion);
+document.getElementById("againButton").addEventListener("click", startQuiz);
 </script>
 </body>
 </html>
