@@ -748,10 +748,20 @@ footer {
   </button>
 
   <button class="drawer-link" type="button"
-    data-menu-note="Üç oyunlu oyun köşemizi en son birlikte hazırlayacağız. 🎮">
+    id="gamesMenuButton" aria-expanded="false"
+    aria-controls="gamesSubmenu">
     <span class="drawer-icon">🎮</span>
     <span>Oyunlar</span>
+    <span style="margin-left:auto">⌄</span>
   </button>
+
+  <div id="gamesSubmenu" style="display:none; padding-left:18px;">
+    <a class="drawer-link" href="irem-testi.html"
+      style="display:flex; align-items:center; gap:10px; color:inherit; text-decoration:none;">
+      <span class="drawer-icon">💌</span>
+      <span>İrem Testi</span>
+    </a>
+  </div>
 
   <div class="menu-label">BİZİM HİKÂYEMİZ</div>
 
@@ -1110,6 +1120,16 @@ document.querySelectorAll(".irem-card").forEach(card => {
     card.setAttribute("aria-expanded", String(!isOpen));
   });
 });
+const gamesButton = document.getElementById("gamesMenuButton");
+const gamesSubmenu = document.getElementById("gamesSubmenu");
+
+if (gamesButton && gamesSubmenu) {
+  gamesButton.addEventListener("click", () => {
+    const isOpen = gamesSubmenu.style.display !== "none";
+    gamesSubmenu.style.display = isOpen ? "none" : "block";
+    gamesButton.setAttribute("aria-expanded", String(!isOpen));
+  });
+}
 </script>
 
 </body>
