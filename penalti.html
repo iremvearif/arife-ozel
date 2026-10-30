@@ -411,6 +411,80 @@ for (let i = 0; i < 5; i++) {
   scene.add(stand);
 }
 
+// SEYİRCİLER
+
+const bodyGeometry = new THREE.CylinderGeometry(0.07, 0.09, 0.28, 6);
+const headGeometry = new THREE.SphereGeometry(0.075, 8, 6);
+
+const bodyMaterial = new THREE.MeshStandardMaterial({
+  color: 0xffffff,
+  roughness: 1
+});
+
+const headMaterial = new THREE.MeshStandardMaterial({
+  color: 0xffffff,
+  roughness: 1
+});
+
+const spectatorCount = 155;
+
+const bodies = new THREE.InstancedMesh(
+  bodyGeometry,
+  bodyMaterial,
+  spectatorCount
+);
+
+const heads = new THREE.InstancedMesh(
+  headGeometry,
+  headMaterial,
+  spectatorCount
+);
+
+const colors = [
+  0x172c55,
+  0xf2c230,
+  0xffffff,
+  0xb83242,
+  0x315c48,
+  0xdddddd
+];
+
+const dummy = new THREE.Object3D();
+let person = 0;
+
+for (let row = 0; row < 5; row++) {
+  for (let seat = 0; seat < 31; seat++) {
+
+    const x = -10 + seat * 0.66 + (Math.random() - 0.5) * 0.12;
+    const y = 1.05 + row * 0.7;
+    const z = -11.5 - row * 1.7;
+
+    const color = colors[Math.floor(Math.random() * colors.length)];
+
+    dummy.position.set(x, y, z);
+    dummy.rotation.set(0, 0, (Math.random() - 0.5) * 0.15);
+    dummy.updateMatrix();
+
+    bodies.setMatrixAt(person, dummy.matrix);
+    bodies.setColorAt(person, new THREE.Color(color));
+
+    dummy.position.set(x, y + 0.22, z);
+    dummy.rotation.set(0, 0, 0);
+    dummy.updateMatrix();
+
+    heads.setMatrixAt(person, dummy.matrix);
+    heads.setColorAt(person, new THREE.Color(0xd9a47d));
+
+    person++;
+  }
+}
+
+scene.add(bodies);
+scene.add(heads);
+
+bodies.instanceMatrix.needsUpdate = true;
+heads.instanceMatrix.needsUpdate = true;
+
 // TRİBÜN IŞIKLARI
 
 for (const x of [-11, 11]) {
