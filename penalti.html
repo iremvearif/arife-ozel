@@ -455,6 +455,25 @@ crowdLoader.load(
 );
 
     scene.add(fan);
+    // DOLU STADYUM TARAFTARLARI
+for (let row = 0; row < 8; row++) {
+  for (let col = 0; col < 35; col++) {
+    if (row === 0 && col === 17) continue;
+
+    const copy = fan.clone(true);
+
+    copy.position.set(
+      -17 + col * 1,
+      fan.position.y,
+      -10 - row * 1.2
+    );
+
+    const scale = 0.8 + Math.random() * 0.25;
+    copy.scale.multiplyScalar(scale);
+
+    scene.add(copy);
+  }
+}
 
     console.log("3D taraftar yüklendi!");
   },
