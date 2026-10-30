@@ -216,7 +216,31 @@ canvas {
   <br><br>
   Oyunu daha iyi oynamak için telefonunu yatay çevir!
 </div>
+<script>
+window.addEventListener('error', function(e) {
+  const loading = document.getElementById('loading');
+  if (loading) {
+    loading.innerHTML =
+      '<div style="color:white;padding:25px;text-align:center;">' +
+      '<h2>OYUNDA HATA VAR</h2>' +
+      '<p>' + (e.message || 'Bilinmeyen hata') + '</p>' +
+      '</div>';
+    loading.style.display = 'flex';
+  }
+});
 
+window.addEventListener('unhandledrejection', function(e) {
+  const loading = document.getElementById('loading');
+  if (loading) {
+    loading.innerHTML =
+      '<div style="color:white;padding:25px;text-align:center;">' +
+      '<h2>BAĞLANTI HATASI</h2>' +
+      '<p>' + e.reason + '</p>' +
+      '</div>';
+    loading.style.display = 'flex';
+  }
+});
+</script>
 <script type="module">
 import * as THREE from
 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
