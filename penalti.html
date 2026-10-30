@@ -413,8 +413,8 @@ for (let i = 0; i < 5; i++) {
 
 // SEYİRCİLER
 
-const bodyGeometry = new THREE.CylinderGeometry(0.07, 0.09, 0.28, 6);
-const headGeometry = new THREE.SphereGeometry(0.075, 8, 6);
+const bodyGeometry = new THREE.CylinderGeometry(0.16, 0.19, 0.55, 8);
+const headGeometry = new THREE.SphereGeometry(0.17, 10, 8);
 
 const bodyMaterial = new THREE.MeshStandardMaterial({
   color: 0xffffff,
@@ -456,7 +456,7 @@ for (let row = 0; row < 5; row++) {
   for (let seat = 0; seat < 31; seat++) {
 
     const x = -10 + seat * 0.66 + (Math.random() - 0.5) * 0.12;
-    const y = 1.05 + row * 0.7;
+    const y = 1.25 + row * 0.7;
     const z = -11.5 - row * 1.7;
 
     const color = colors[Math.floor(Math.random() * colors.length)];
@@ -468,7 +468,7 @@ for (let row = 0; row < 5; row++) {
     bodies.setMatrixAt(person, dummy.matrix);
     bodies.setColorAt(person, new THREE.Color(color));
 
-    dummy.position.set(x, y + 0.22, z);
+    dummy.position.set(x, y + 0.42, z);
     dummy.rotation.set(0, 0, 0);
     dummy.updateMatrix();
 
