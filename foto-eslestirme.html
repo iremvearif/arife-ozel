@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fotoğraf Eşleştirme ♡</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 24px 12px;
+  background: #eadde0;
+  color: #44353c;
+  font-family: Georgia, serif;
+  text-align: center;
+}
+
+.container {
+  max-width: 850px;
+  margin: auto;
+  background: #fcf5f2;
+  border-radius: 22px;
+  padding: 25px 14px;
+}
+
+h1 {
+  font-weight: normal;
+  font-size: 27px;
+}
+
+.subtitle {
+  color: #94747f;
+  font-size: 14px;
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin: 22px 0;
+  font-size: 14px;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.card {
+  aspect-ratio: 1 / 1.15;
+  border: 0;
+  border-radius: 10px;
+  background: #e8cbd4;
+  padding: 4px;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+
+.card::before {
+  content: "♡";
+  font-size: 30px;
+  color: #fff9f7;
+}
+
+.card img {
+  display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 7px;
+}
+
+.card.open::before,
+.card.matched::before {
+  display: none;
+}
+
+.card.open img,
+.card.matched img {
+  display: block;
+}
+
+.card.matched {
+  outline: 2px solid #c78fa1;
+  opacity: .85;
+}
+
+button:disabled {
+  cursor: default;
+}
+
+#message {
+  display: none;
+  margin: 25px 0 10px;
+  padding: 20px;
+  background: #f4e3e7;
+  border-radius: 15px;
+  line-height: 1.7;
+}
+
+.action {
+  border: none;
+  border-radius: 20px;
+  background: #c78fa1;
+  color: white;
+  padding: 11px 20px;
+  font-family: Georgia, serif;
+  font-size: 14px;
+  margin: 8px;
+  cursor: pointer;
+}
+
+.home {
+  display: inline-block;
+  color: #94747f;
+  margin-top: 22px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+@media (min-width: 600px) {
+  .board {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 12px;
+  }
+}
+
+@media (max-width: 350px) {
+  .board {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h1>Birbirimizi Ne Kadar Tanıyoruz? ♡</h1>
+<p class="subtitle">Aynı fotoğrafları bul ve bütün çiftleri eşleştir...</p>
+
+<div class="stats">
+  <span>Hamle: <b id="moves">0</b></span>
+  <span>Süre: <b id="time">00:00</b></span>
+  <span>Eşleşme: <b id="pairs">0 / 18</b></span>
+</div>
+
+<div class="board" id="board"></div>
+
+<div id="message">
+  <h2>Başardın! ♡</h2>
+  <p>Bizim bütün güzel anılarımızı buldun.</p>
+  <p>İyi ki yollarımız kesişmiş sevgilim. Seni çok seviyorum! ♡</p>
+  <button class="action" onclick="restart()">Yeniden Oyna</button>
+</div>
+
+<button class="action" onclick="restart()">Oyunu Yeniden Başlat</button>
+<br>
+<a class="home" href="index.html">♡ Ana sayfaya dön</a>
+
+</div>
+
+<script>
+const photos = [
+"IMG-20251206-WA0044.jpg",
+"IMG-20251206-WA0058.jpg",
+"IMG-20251206-WA0067.jpg",
+"IMG-20251215-WA0049.jpg",
+"IMG-20251221-WA0075.jpg",
+"IMG-20260203-WA0018.jpg",
+"IMG-20260203-WA0034.jpg",
+"IMG-20260214-WA0035.jpg",
+"IMG-20260214-WA0045.jpg",
+"IMG-20260318-WA0003.jpg",
+"IMG-20260415-WA0013.jpg",
+"IMG-20260415-WA0024.jpg",
+"IMG-20260425-WA0013.jpg",
+"IMG-20260425-WA0016.jpg",
+"IMG-20260619-WA0014.jpg",
+"IMG-20260619-WA0022.jpg",
+"IMG-20260819-WA0068.jpg",
+"IMG-20261003-WA0015.jpg"
+];
+
+let cards = [];
+let first = null;
+let second = null;
+let lock = false;
+let moves = 0;
+let matched = 0;
+let seconds = 0;
+let timer = null;
+let started = false;
+
+function shuffle(array) {
+  return array.sort(() => Math.random() - 0.5);
+}
+
+function startTimer() {
+  if (started) return;
+  started = true;
+  timer = setInterval(() => {
+    seconds++;
+    document.getElementById("time").textContent =
+      String(Math.floor(seconds / 60)).padStart(2, "0") + ":" +
+      String(seconds % 60).padStart(2, "0");
+  }, 1000);
+}
+
+function createBoard() {
+  const board = document.getElementById("board");
+  board.innerHTML = "";
+
+  cards = shuffle([...photos, ...photos]);
+
+  cards.forEach((photo, index) => {
+    const card = document.createElement("button");
+    card.className = "card";
+    card.type = "button";
+    card.dataset.photo = photo;
+
+    const img = document.createElement("img");
+    img.src = photo;
+    img.alt = "Anımız";
+    img.draggable = false;
+
+    card.appendChild(img);
+    card.addEventListener("click", () => flip(card));
+
+    board.appendChild(card);
+  });
+}
+
+function flip(card) {
+  if (lock || card.classList.contains("open") ||
+      card.classList.contains("matched")) return;
+
+  startTimer();
+  card.classList.add("open");
+
+  if (!first) {
+    first = card;
+    return;
+  }
+
+  second = card;
+  moves++;
+  document.getElementById("moves").textContent = moves;
+
+  if (first.dataset.photo === second.dataset.photo) {
+    first.classList.add("matched");
+    second.classList.add("matched");
+    first = null;
+    second = null;
+    matched++;
+
+    document.getElementById("pairs").textContent = matched + " / 18";
+
+    if (matched === 18) {
+      clearInterval(timer);
+      document.getElementById("message").style.display = "block";
+    }
+  } else {
+    lock = true;
+    setTimeout(() => {
+      first.classList.remove("open");
+      second.classList.remove("open");
+      first = null;
+      second = null;
+      lock = false;
+    }, 850);
+  }
+}
+
+function restart() {
+  clearInterval(timer);
+  first = null;
+  second = null;
+  lock = false;
+  moves = 0;
+  matched = 0;
+  seconds = 0;
+  started = false;
+
+  document.getElementById("moves").textContent = "0";
+  document.getElementById("pairs").textContent = "0 / 18";
+  document.getElementById("time").textContent = "00:00";
+  document.getElementById("message").style.display = "none";
+
+  createBoard();
+}
+
+createBoard();
+</script>
+</body>
+</html>
